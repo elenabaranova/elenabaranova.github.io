@@ -1,0 +1,169 @@
+
+@font-face {
+  font-family: 'hospital';
+  src: url('../fonts/hospital.eot?v=4.5.0');
+  src: url('../fonts/hospital.eot?#iefix&v=4.5.0') format('embedded-opentype'), url('../fonts/hospital.woff2?v=4.5.0') format('woff2'), url('../fonts/hospital.woff?v=4.5.0') format('woff'), url('../fonts/hospital.ttf?v=4.5.0') format('truetype'), url('../fonts/hospital.svg?v=4.5.0#hospitalregular') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+.hp {
+  display: inline-block;
+  font: normal normal normal 14px/1 hospital;
+  font-size: inherit;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+
+
+.hp-ambulance:before {
+	content: "\e000";
+}
+.hp-apple76:before {
+	content: "\e001";
+}
+.hp-band-aid:before {
+	content: "\e002";
+}
+.hp-bandage1:before {
+	content: "\e003";
+}
+.hp-bed38:before {
+	content: "\e004";
+}
+.hp-bed39:before {
+	content: "\e005";
+}
+.hp-bin11:before {
+	content: "\e006";
+}
+.hp-computer218:before {
+	content: "\e007";
+}
+.hp-diagnosis:before {
+	content: "\e008";
+}
+.hp-doctor3:before {
+	content: "\e009";
+}
+.hp-flask1:before {
+	content: "\e00a";
+}
+.hp-forceps1:before {
+	content: "\e00b";
+}
+.hp-heart367:before {
+	content: "\e00c";
+}
+.hp-hospital27:before {
+	content: "\e00d";
+}
+.hp-hospital28:before {
+	content: "\e00e";
+}
+.hp-hospital29:before {
+	content: "\e00f";
+}
+.hp-hospital30:before {
+	content: "\e010";
+}
+.hp-injection:before {
+	content: "\e011";
+}
+.hp-lift1:before {
+	content: "\e012";
+}
+.hp-medical-equipment:before {
+	content: "\e013";
+}
+.hp-medical-equipment1:before {
+	content: "\e014";
+}
+.hp-medical-icons:before {
+	content: "\e015";
+}
+.hp-medication4:before {
+	content: "\e016";
+}
+.hp-medication5:before {
+	content: "\e017";
+}
+.hp-medicine40:before {
+	content: "\e018";
+}
+.hp-medicine41:before {
+	content: "\e019";
+}
+.hp-microscope:before {
+	content: "\e01a";
+}
+.hp-notepad18:before {
+	content: "\e01b";
+}
+.hp-nurse1:before {
+	content: "\e01c";
+}
+.hp-patient5:before {
+	content: "\e01d";
+}
+.hp-perfusion:before {
+	content: "\e01e";
+}
+.hp-pill13:before {
+	content: "\e01f";
+}
+.hp-pin73:before {
+	content: "\e020";
+}
+.hp-pipette1:before {
+	content: "\e021";
+}
+.hp-scalpel2:before {
+	content: "\e022";
+}
+.hp-secretary:before {
+	content: "\e023";
+}
+.hp-smartphone57:before {
+	content: "\e024";
+}
+.hp-stairs13:before {
+	content: "\e025";
+}
+.hp-stairs14:before {
+	content: "\e026";
+}
+.hp-stethoscope2:before {
+	content: "\e027";
+}
+.hp-supplies:before {
+	content: "\e028";
+}
+.hp-surgeon3:before {
+	content: "\e029";
+}
+.hp-syrup1:before {
+	content: "\e02a";
+}
+.hp-tablets:before {
+	content: "\e02b";
+}
+.hp-telephone123:before {
+	content: "\e02c";
+}
+.hp-test-tube5:before {
+	content: "\e02d";
+}
+.hp-thermometer1:before {
+	content: "\e02e";
+}
+.hp-thermometer64:before {
+	content: "\e02f";
+}
+.hp-uniform1:before {
+	content: "\e030";
+}
+.hp-x-ray2:before {
+	content: "\e031";
+}

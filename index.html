@@ -1,7 +1,6079 @@
 <!DOCTYPE html>
 <html>
-<body>
-<h1>Hello World</h1>
-<p>I'm hosted with GitHub Pages.</p>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Genomics</title>
+<link href='https://fonts.googleapis.com/css?family=Lato:400,300,700' rel='stylesheet' type='text/css'>
+<link href="assets/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+<link href="assets/fonts/hospital/hospital.css" rel="stylesheet">
+<link href="assets/less/bootstrap.less" rel="stylesheet/less">
+<link href="assets/less/app.less" rel="stylesheet/less">
+<script src="assets/js/less-1.7.0.js"></script>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+<body class="subnav-closed">
+<div class="loader hidden">
+	<span data-localize="genearl.loading">Loading. Wait, please.</span>
+</div>
+<div class="main">
+   <div class="container-fluid">
+				<nav class="navbar navbar-inverse navbar-fixed-top navbar-main">
+				  <div class="navbar-inner">
+					<div>
+						<div class="dropdown">
+							<a role="button" data-toggle="dropdown" class="btn navbar-btn brand dropdown-toggle" href="#"><span data-localize="brand.title">AGx </span><span class="caret"></span></a>
+							<ul class="dropdown-menu">
+								<li><a class="about" type="button" href="#" data-target="#info" data-toggle="modal" data-keyboard="false" data-whatever="about"><span>About</span></a></li>
+								<li><a class="faq" type="button" href="#" data-target="#info" data-toggle="modal" data-keyboard="false" data-whatever="faq"><span>Help</span></a></li>
+							</ul>
+						</div>
+					</div>
+					<div>
+						<a href="#" class="btn navbar-btn" data-toggle="modal" type="button" data-target="#upload"><span class="hidden-xxs">Samples</span><span class="visible-xxs"><i class="md-i">file_upload</i></span></a>
+					</div>
+					<div>
+						<a type="button" href="#" class="btn navbar-btn" id="btnToggle" data-target="#analysis" data-toggle="modal">
+  						<span class="hidden-xxs">Analysis</span><span class="visible-xxs"><i class="md-i">settings</i></span>
+  						</a>
+					</div>
+					<div class="navbar-search">
+						<a type="button" class="btn navbar-btn btn-block visible-xxs" data-toggle="modal" data-target="#mobileSearch" style="text-align:left"><i class="md-i">search</i></a>
+						<div class="navbar-search-field hidden-xxs">
+							<input type="text" placeholder="" class="form-control placeholder-inverse">
+						</div>
+					</div>
+					<div>
+						<a class="btn navbar-btn" type="button" id="dropdownMenu1" data-toggle="modal" data-target="#filename">
+						<span class="hidden-xxs" data-localize="files.export.title">Export</span>
+						<span class="visible-xxs"><i class="md-i">file_download</i></span>
+						<span class="badge badge-warning">7</span>
+						</a>
+						<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+							<li><a href="#" type="button" data-toggle="modal" data-target="#filename"><span data-localize="files.export.format.values.msexcel">MSExcel</span></a></li>
+							<li><a href="#" type="button" data-toggle="modal" data-target="#filename"><span data-localize="files.export.format.values.cvs">CVS</a></li>
+							<li><a href="#" type="button" data-toggle="modal" data-target="#filename"><span data-localize="files.export.format.values.sql">SQL</span></a></li>
+							<li><a href="#" type="button" data-toggle="modal" data-target="#filename"><span data-localize="files.export.format.values.json">JSON</span></a></li>
+							<li><a href="#" type="button" data-toggle="modal" data-target="#filename"><span data-localize="files.export.format.values.xml">XML</span></a></li>
+						</ul>
+					</div>
+					<div class="hidden-xxs">
+						<a class="btn navbar-btn" data-toggle="modal" data-target="#exporthistory"><span data-localize="files.title">Saved files</span></a>
+					</div>
+					<div class="visible-xxs">
+						<a class="btn navbar-btn" data-toggle="modal" data-target="#exporthistory"><i class="md-i">archive</i></a>
+					</div>
+					<div data-trigger="hover">
+						<div class="dropdown language">
+							<a role="button" data-toggle="dropdown" class="btn navbar-btn dropdown-toggle" href="#"><span data-localize="language.lang_xs_En" class="visible-xs">Eng</span><span data-localize="language.lang_sm_En" class="hidden-xs">English </span><span class="caret"></span></a>
+							<ul class="dropdown-menu">
+								<li><a id="en_lang" type="button" href="#"><span data-localize="language.lang_sm_En">English</span></a></li>
+								<li><a id="ch_lang" type="button" href="#"><span data-localize="language.lang_sm_Ch">中国</span></a></li>
+							</ul>
+							<input type="hidden" value="en" id="curr_lang">
+						</div>
+					</div>
+					<!-- 	replace this tooltip by "data-localize="account.profile.balance.value" for paying users -->
+					<div class="hidden-xs">
+						<a data-target="#buy" data-toggle="modal" data-keyboard="false" type="button" class="btn navbar-btn" href="#"><span data-localize="buy.title">Buy</span></a>
+					</div>
+					<div>
+						<div class="right-dropdown">
+							<div class="dropdown">
+								<a aria-expanded="true" class="btn navbar-btn dropdown-toggle" data-toggle="dropdown">
+								<span class="guest hidden" data-localize="account.login.title">Login</span><span class="badge badge-success">&gt;99</span><span class="label-round user hidden-xxs">Account</span><span class="label-round user visible-xxs"><i class="md-i">person</i></span><span class="caret"></span>
+								</a>
+								<div class="dropdown-menu dropdown-menu-right">
+									<div class="arrow">
+									</div>
+									<div class="panel panel-default">
+										<div class="panel-heading table-row ">
+											<div class="max-width">
+												<div>
+													<strong><i class="pic"></i> Username</strong>
+												</div>
+												<div class="small">
+													 username@domain.com
+												</div>
+											</div>
+											<div>
+												<button class="btn btn-default" data-toggle="modal" data-target="#loginModal">Profile</button>
+											</div>
+										</div>
+										<div class="panel-body">
+											<button class="btn btn-sm btn-primary pull-right">Buy</button>
+											<dl class="dl-inline">
+												<dt>Credits left</dt>
+												<dd><span class="label label-success">456</span></dd>
+											</dl>
+										</div>
+										<div class="panel-footer table-row ">
+											<div class="max-width">
+											</div>
+											<div>
+												<button class="btn btn-default">Logout</button>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				</nav>
+				<div class="collapse collapse-subnav" id="subnav">
+					<nav class="navbar navbar-fixed-top navbar-default">
+					<div class="table-row">
+						<div class="max-width">
+							<div class="btn-group">
+								<select class="sample-search">
+									<option value="3620194" selected="selected">mental retardation patient12</option>
+								</select>
+							</div>
+						</div>
+						<div>
+							<div class="dropdown btn-group">
+								<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+								<span data-localize="filters.title">Filters</span><span class="caret"></span>
+								</button>
+								<ul class="dropdown-menu dropdown-menu-item-template">
+									<li><a href="#" type="button" data-toggle="modal" data-target="#filters"><span data-localize="filters.setup.title">Setup Filters</span></a></li>
+									<li><a href="#" type="button" data-toggle="modal" data-target="#combinefilters"><span data-localize="filters.combine.title">Combine Filters</span></a></li>
+								</ul>
+							</div>
+						</div>
+						<div class="max-width">
+							<div class="btn-group">
+								<select class="select2-multiple" multiple="" id="filterSelect">
+									<option selected value="eye" title="standard">Eye Cancer Diagnostics</option>
+									<option value="cust1" title="standard">Breast cancer</option>
+									<option value="cust2" title="standard">Lung cancer</option>
+									<option value="cust3">Autism</option>
+									<option value="cust4">Retinoblastoma</option>
+									<option value="cust5" title="standard">Mental retardation</option>
+								</select>
+							</div>
+						</div>
+						<div>
+							<div class="btn-group">
+								<button class="btn btn-shadow btn-default" type="button" data-toggle="modal" data-target="#views"><span data-localize="views.title">Views</button>
+							</div>
+						</div>
+						<div class="max-width">
+							<div class="btn-group btn-group-select100">
+								<select class="select2" id="viewSelect">
+									<option value="1" selected title="standard">Default View</option>
+									<option value="2">Default View Copy</option>
+									<option value="3">Custom View</option>
+									<option value="4">User Custom View 1</option>
+									<option value="5">User Custom View 2</option>
+									<option value="6">User Custom View 3</option>
+								</select>
+							</div>
+						</div>
+						<div>
+							<div id="analyzeBtnGroup" class="btn-group btn-group-submit" data-localize="query.analyze.help" data-toggle="tooltip" data-placement="bottom" data-container="body" title="Click for analyze current sample with current filters and view">
+								<button class="btn btn-primary" type="button" data-toggle="modal" data-target="#confirm">
+								<span data-localize="query.analyze.title">Analyze</span>
+								</button>
+							</div>
+						</div>
+						<div>
+							<div class="btn-group btn-group-history" data-localize="history.help" data-toggle="tooltip" data-placement="bottom" data-container="body" title="History of queries, saved query settings">
+								<button data-target="#history" data-toggle="modal" type="button" class="btn btn-default"><span data-localize="history.title">Load history</span></button>
+							</div>
+						</div>
+					</div>
+					</nav>
+				</div>
+				<div class="table-wrapper table-variants-wrapper">
+						<div class="empty hidden">
+							<div class="panel panel-danger">
+								<div class="panel-body">
+									<dl class="dl-horizontal">
+										<dt><span class="fa-stack fa-lg text-danger">
+										<i class="fa fa-circle fa-stack-2x"></i>
+										<i class="fa fa-exclamation fa-stack-1x fa-inverse"></i>
+										</span></dt>
+										<dd>
+										<h4><span data-localize="history.empty.title"> Error loading</span>
+										</h4>
+										</dd>
+									</dl>
+									<dl class="dl-horizontal">
+										<dt>Code:</dt>
+										<dd class="text-danger">External module error</dd>
+									</dl>
+									<dl class="dl-horizontal">
+										<dt>Message:</dt>
+										<dd class="text-danger">External module error, Value error: unknown condition</dd>
+									</dl>
+									<dl class="dl-horizontal">
+										<dd><a href="" class="btn btn-lg btn-default">Send error to support</a></dd>
+									</dl>
+								</div>
+							</div>
+						</div>
+					
+								<table class="table table-striped table-variants">
+															<tbody id="variants_table_head" class="table-variants-head">
+<tr>
+	<td class="btntd">
+		<div>
+		</div>
+		<div>
+		</div>
+	</td>
+	<td class="btntd favorites">
+		<div>
+		</div>
+		<div>
+		</div>
+	</td>
+	<td data-label="comment" class="comment">
+		<div class="variants-table-header-label">
+			<a type="button" class="btn-link-default">Comment</a>
+			<div class="btn-group btn-group-sort" role="group" data-toggle="buttons">
+				<button class="btn-link-light-default btn-sort asc">
+				<span></span>
+				</button>
+				<button class="btn-link-light-default btn-sort desc">
+				<span></span>
+				</button>
+			</div>
+		</div>
+		<div class="variants-table-search-field input-group">
+      <span class="input-group-btn"><button  class="btn btn-link-light-default"><i></i></button></span>
+			<input type="text" class="form-control material-input">
+		</div>
+	</td>
+	<td data-label="function">
+		<div class="variants-table-header-label">
+			<a type="button" class="btn-link-default">Function</a>
+			<div class="btn-group btn-group-sort" role="group" data-toggle="buttons">
+				<button class="btn btn-sort asc active">
+				<span class="text-info">1</span>
+				</button>
+				<button class="btn-link-light-default btn-sort desc">
+				<span></span>
+				</button>
+			</div>
+		</div>
+		<div class="variants-table-search-field input-group">
+  <span class="input-group-btn"><button  class="btn btn-link-light-default"><i></i></button></span>
+			<input type="text" class="form-control material-input">
+		</div>
+	</td>
+	<td data-label="gene">
+		<div class="variants-table-header-label">
+			<a type="button" class="btn-link-default">Gene</a>
+			<div class="btn-group btn-group-sort" role="group" data-toggle="buttons">
+				<button class="btn-link-light-default btn-sort asc">
+				<span></span>
+				</button>
+				<button class="btn-link-light-default btn-sort desc">
+				<span></span>
+				</button>
+			</div>
+		</div>
+		<div class="variants-table-search-field input-group">
+  <span class="input-group-btn"><button  class="btn btn-link-light-default"><i></i></button></span>
+			<input type="text" class="form-control material-input">
+		</div>
+	</td>
+	<td data-label="chromosome">
+		<div class="variants-table-header-label">
+			<a type="button" class="btn-link-default">Chrom</a>
+			<div class="btn-group btn-group-sort" role="group" data-toggle="buttons">
+				<button class="btn-link-light-default btn-sort asc">
+				<span></span>
+				</button>
+				<button class="btn-link-light-default btn-sort desc">
+				<span></span>
+				</button>
+			</div>
+		</div>
+		<div class="variants-table-search-field input-group filtered">
+  <span class="input-group-btn"><button  class="btn btn-link-light-default"><i></i></button></span>
+			<input type="text" class="form-control material-input" value="filtered text">
+		</div>
+	</td>
+	<td data-label="endCoordinate">
+		<div class="variants-table-header-label">
+			<a type="button" class="btn-link-default">EndCoordinate</a>
+			<div class="btn-group btn-group-sort" role="group" data-toggle="buttons">
+				<button class="btn-link-light-default btn-sort asc">
+				<span></span>
+				</button>
+				<button class="btn-link-light-default btn-sort desc">
+				<span></span>
+				</button>
+			</div>
+		</div>
+		<div class="variants-table-search-field input-group">
+  <span class="input-group-btn"><button  class="btn btn-link-light-default"><i></i></button></span>
+			<input type="text" class="form-control material-input">
+		</div>
+	</td>
+	<td data-label="cytogeneticBand">
+		<div class="variants-table-header-label">
+			<a type="button" class="btn-link-default">CytogeneticBand</a>
+			<div class="btn-group btn-group-sort" role="group" data-toggle="buttons">
+				<button class="btn-link-light-default btn-sort asc">
+				<span></span>
+				</button>
+				<button class="btn-link-light-default btn-sort desc">
+				<span></span>
+				</button>
+			</div>
+		</div>
+		<div class="variants-table-search-field input-group">
+  <span class="input-group-btn"><button  class="btn btn-link-light-default"><i></i></button></span>
+			<input type="text" class="form-control material-input">
+		</div>
+	</td>
+	<td data-label="startCoordinate">
+		<div class="variants-table-header-label">
+			<a type="button" class="btn-link-default">startCoordinate</a>
+			<div class="btn-group btn-group-sort" role="group" data-toggle="buttons">
+				<button class="btn-link-light-default btn-sort asc">
+				<span></span>
+				</button>
+				<button class="btn-link-light-default btn-sort desc">
+				<span></span>
+				</button>
+			</div>
+		</div>
+		<div class="variants-table-search-field input-group">
+  <span class="input-group-btn"><button  class="btn btn-link-light-default"><i></i></button></span>
+			<input type="text" class="form-control material-input">
+		</div>
+	</td>
+	<td data-label="affectedAminoAcid">
+		<div class="variants-table-header-label">
+			<a type="button" class="btn-link-default">affectedAminoAcid</a>
+			<div class="btn-group btn-group-sort" role="group" data-toggle="buttons">
+				<button class="btn-link-light-default btn-sort asc">
+				<span></span>
+				</button>
+				<button class="btn-link-light-default btn-sort desc">
+				<span></span>
+				</button>
+			</div>
+		</div>
+		<div class="variants-table-search-field input-group">
+  <span class="input-group-btn"><button  class="btn btn-link-light-default"><i></i></button></span>
+			<input type="text" class="form-control material-input">
+		</div>
+	</td>
+	<td data-label="proteinChange">
+		<div class="variants-table-header-label">
+			<a type="button" class="btn-link-default">proteinChange</a>
+			<div class="btn-group btn-group-sort" role="group" data-toggle="buttons">
+				<button class="btn-link-light-default btn-sort asc">
+				<span></span>
+				</button>
+				<button class="btn-link-light-default btn-sort desc">
+				<span></span>
+				</button>
+			</div>
+		</div>
+		<div class="variants-table-search-field input-group">
+  <span class="input-group-btn"><button  class="btn btn-link-light-default"><i></i></button></span>
+			<input type="text" class="form-control material-input">
+		</div>
+	</td>
+	<td data-label="granthamScore">
+		<div class="variants-table-header-label">
+			<a type="button" class="btn-link-default">granthamScore</a>
+			<div class="btn-group btn-group-sort" role="group" data-toggle="buttons">
+				<button class="btn-link-light-default btn-sort asc">
+				<span></span>
+				</button>
+				<button class="btn-link-light-default btn-sort desc">
+				<span></span>
+				</button>
+			</div>
+		</div>
+		<div class="variants-table-search-field input-group">
+  <span class="input-group-btn"><button  class="btn btn-link-light-default"><i></i></button></span>
+			<input type="text" class="form-control material-input">
+		</div>
+	</td>
+	<td data-label="functionalConsequence">
+		<div class="variants-table-header-label">
+			<a type="button" class="btn-link-default">functionalConsequence</a>
+			<div class="btn-group btn-group-sort" role="group" data-toggle="buttons">
+				<button class="btn-link-light-default btn-sort asc">
+				<span></span>
+				</button>
+				<button class="btn-link-light-default btn-sort desc">
+				<span></span>
+				</button>
+			</div>
+		</div>
+		<div class="variants-table-search-field input-group">
+  <span class="input-group-btn"><button  class="btn btn-link-light-default"><i></i></button></span>
+			<input type="text" class="form-control material-input">
+		</div>
+	</td>
+	<td data-label="transcript">
+		<div class="variants-table-header-label">
+			<a type="button" class="btn-link-default">transcript</a>
+			<div class="btn-group btn-group-sort" role="group" data-toggle="buttons">
+				<button class="btn-link-light-default btn-sort asc">
+				<span></span>
+				</button>
+				<button class="btn-link-light-default btn-sort desc">
+				<span></span>
+				</button>
+			</div>
+		</div>
+		<div class="variants-table-search-field input-group">
+  <span class="input-group-btn"><button  class="btn btn-link-light-default"><i></i></button></span>
+			<input type="text" class="form-control material-input">
+		</div>
+	</td>
+	<td data-label="_fid">
+		<div class="variants-table-header-label">
+			<a type="button" class="btn-link-default">_fid</a>
+			<div class="btn-group btn-group-sort" role="group" data-toggle="buttons">
+				<button class="btn-link-light-default btn-sort asc">
+				<span></span>
+				</button>
+				<button class="btn-link-light-default btn-sort desc">
+				<span></span>
+				</button>
+			</div>
+		</div>
+		<div class="variants-table-search-field input-group">
+  <span class="input-group-btn"><button  class="btn btn-link-light-default"><i></i></button></span>
+			<input type="text" class="form-control material-input">
+		</div>
+	</td>
+	<td data-label="_selected">
+		<div class="variants-table-header-label">
+			<a type="button" class="btn-link-default">_selected</a>
+			<div class="btn-group btn-group-sort" role="group" data-toggle="buttons">
+				<button class="btn-link-light-default btn-sort asc">
+				<span></span>
+				</button>
+				<button class="btn-link-light-default btn-sort desc">
+				<span></span>
+				</button>
+			</div>
+		</div>
+		<div class="variants-table-search-field input-group">
+  <span class="input-group-btn"><button  class="btn btn-link-light-default"><i></i></button></span>
+			<input type="text" class="form-control material-input">
+		</div>
+	</td>
+	<td>
+		<div>
+		</div>
+		<div>
+		</div>
+	</td>
+</tr>
+</tbody>
+
+			
+							 <tbody id="variants_table_body" class="table-variants-body">
+<tr id="0">
+	<td class="btntd">
+		<div>
+			<label class="checkbox"><input type="checkbox"><i></i></label><span>2</span>
+		</div>
+	</td>
+	<td class="btntd favorites">
+		<div>
+			<button class="btn btn-link reset-padding" data-toggle="button"><i class="i-star"></i></button>
+		</div>
+	</td>
+	<td class="comment">
+		<div>
+			<a href="#" class="btn-link-default comment-link" data-type="textarea" data-pk="1" data-placeholder="Your comments here..." data-placement="right">awesome user!</a>
+		</div>
+	</td>
+	<td class="function active">
+		<div>
+			 exonic
+		</div>
+	</td>
+	<td class="gene">
+		<div>
+			 A1BG
+		</div>
+	</td>
+	<td class="chromosome">
+		<div>
+			 19
+		</div>
+	</td>
+	<td class="endCoordinate">
+		<div>
+			 58864479
+		</div>
+	</td>
+	<td class="cytogeneticBand">
+		<div>
+			 19q13.43
+		</div>
+	</td>
+	<td class="startCoordinate">
+		<div>
+			 58864479
+		</div>
+	</td>
+	<td class="affectedAminoAcid">
+		<div>
+			 A1BG:NM_130786.3:ex
+		</div>
+	</td>
+	<td class="proteinChange">
+		<div>
+			 p.H52R
+		</div>
+	</td>
+	<td class="granthamScore">
+		<div>
+			 29
+		</div>
+	</td>
+	<td class="functionalConsequence">
+		<div>
+			 missense
+		</div>
+	</td>
+	<td class="transcript">
+		<div>
+			 NM_130786.3
+		</div>
+	</td>
+	<td class="nucleotideChange">
+		<div>
+			 c.155A&gt;G
+		</div>
+	</td>
+	<td class="_fid">
+		<div>
+			 0
+		</div>
+	</td>
+	<td class="_selected">
+		<div>
+			 false
+		</div>
+	</td>
+</tr>
+<tr id="1">
+	<td class="btntd">
+		<div>
+			<label class="checkbox"><input type="checkbox"><i></i></label><span>2</span>
+		</div>
+	</td>
+	<td class="btntd">
+		<div>
+			<button class="btn btn-link reset-padding" data-toggle="button"><i class="i-star"></i></button>
+		</div>
+	</td>
+	<td class="comment">
+		<div>
+			<a href="#" class="btn-link-default comment-link" data-type="textarea" data-pk="1" data-placeholder="Your comments here..." data-placement="right">Add comment</a>
+		</div>
+	</td>
+	<td class="function active">
+		<div>
+			 exonic
+		</div>
+	</td>
+	<td class="gene">
+		<div>
+			 A1CF
+		</div>
+	</td>
+	<td class="chromosome">
+		<div>
+			 10
+		</div>
+	</td>
+	<td class="endCoordinate">
+		<div>
+			 52575961
+		</div>
+	</td>
+	<td class="cytogeneticBand">
+		<div>
+			 10q11.23
+		</div>
+	</td>
+	<td class="startCoordinate">
+		<div>
+			 52575961
+		</div>
+	</td>
+	<td class="affectedAminoAcid">
+		<div>
+			 A1CF:NM_014576.3:ex
+		</div>
+	</td>
+	<td class="proteinChange">
+		<div>
+			 p.T324S
+		</div>
+	</td>
+	<td class="granthamScore">
+		<div>
+			 58
+		</div>
+	</td>
+	<td class="functionalConsequence">
+		<div>
+			 missense
+		</div>
+	</td>
+	<td class="transcript">
+		<div>
+			 NM_001198
+		</div>
+	</td>
+	<td class="nucleotideChange">
+		<div>
+			 c.970A&gt;T
+		</div>
+	</td>
+	<td class="_fid">
+		<div>
+			 1
+		</div>
+	</td>
+	<td class="_selected">
+		<div>
+			 false
+		</div>
+	</td>
+</tr>
+<tr id="2">
+	<td class="btntd">
+		<div>
+			<label class="checkbox"><input type="checkbox"><i></i></label><span>2</span>
+		</div>
+	</td>
+	<td class="btntd">
+		<div>
+			<button class="btn btn-link reset-padding" data-toggle="button"><i class="i-star"></i></button>
+		</div>
+	</td>
+	<td class="comment">
+		<div>
+			<a href="#" class="btn-link-default comment-link" data-type="textarea" data-pk="1" data-placeholder="Your comments here..." data-placement="right">Add comment</a>
+		</div>
+	</td>
+	<td class="function active">
+		<div>
+			 exonic
+		</div>
+	</td>
+	<td class="gene">
+		<div>
+			 A2ML1
+		</div>
+	</td>
+	<td class="chromosome">
+		<div>
+			 12
+		</div>
+	</td>
+	<td class="endCoordinate">
+		<div>
+			 9009820
+		</div>
+	</td>
+	<td class="cytogeneticBand">
+		<div>
+			 12p13.31
+		</div>
+	</td>
+	<td class="startCoordinate">
+		<div>
+			 9009820
+		</div>
+	</td>
+	<td class="affectedAminoAcid">
+		<div>
+			 A2ML1:NM_001282424
+		</div>
+	</td>
+	<td class="proteinChange">
+		<div>
+			 p.C970Y
+		</div>
+	</td>
+	<td class="granthamScore">
+		<div>
+			 194
+		</div>
+	</td>
+	<td class="functionalConsequence">
+		<div>
+			 missense
+		</div>
+	</td>
+	<td class="transcript">
+		<div>
+			 NM_144670.4
+		</div>
+	</td>
+	<td class="nucleotideChange">
+		<div>
+			 c.2909G&gt;A
+		</div>
+	</td>
+	<td class="_fid">
+		<div>
+			 2
+		</div>
+	</td>
+	<td class="_selected">
+		<div>
+			 false
+		</div>
+	</td>
+</tr>
+<tr id="3">
+	<td class="btntd">
+		<div>
+			<label class="checkbox"><input type="checkbox"><i></i></label><span>2</span>
+		</div>
+	</td>
+	<td class="btntd">
+		<div>
+			<button class="btn btn-link reset-padding" data-toggle="button"><i class="i-star"></i></button>
+		</div>
+	</td>
+	<td class="comment">
+		<div>
+			<a href="#" class="btn-link-default comment-link" data-type="textarea" data-pk="1" data-placeholder="Your comments here..." data-placement="right">Add comment</a>
+		</div>
+	</td>
+	<td class="function active">
+		<div>
+			 exonic
+		</div>
+	</td>
+	<td class="gene">
+		<div>
+			 A2ML1
+		</div>
+	</td>
+	<td class="chromosome">
+		<div>
+			 19
+		</div>
+	</td>
+	<td class="endCoordinate">
+		<div>
+			 9016573
+		</div>
+	</td>
+	<td class="cytogeneticBand">
+		<div>
+			 12p13.31
+		</div>
+	</td>
+	<td class="startCoordinate">
+		<div>
+			 9016573
+		</div>
+	</td>
+	<td class="affectedAminoAcid">
+		<div>
+			 A2ML1:NM_001282424
+		</div>
+	</td>
+	<td class="proteinChange">
+		<div>
+			 p.H1229R
+		</div>
+	</td>
+	<td class="granthamScore">
+		<div>
+			 29
+		</div>
+	</td>
+	<td class="functionalConsequence">
+		<div>
+			 missense
+		</div>
+	</td>
+	<td class="transcript">
+		<div>
+			 NM_144670.4
+		</div>
+	</td>
+	<td class="nucleotideChange">
+		<div>
+			 c.3686A&gt;G
+		</div>
+	</td>
+	<td class="_fid">
+		<div>
+			 3
+		</div>
+	</td>
+	<td class="_selected">
+		<div>
+			 false
+		</div>
+	</td>
+</tr>
+<tr id="4">
+	<td class="btntd">
+		<div>
+			<label class="checkbox"><input type="checkbox"><i></i></label><span>2</span>
+		</div>
+	</td>
+	<td class="btntd">
+		<div>
+			<button class="btn btn-link reset-padding" data-toggle="button"><i class="i-star"></i></button>
+		</div>
+	</td>
+	<td class="comment">
+		<div>
+			<a href="#" class="btn-link-default comment-link" data-type="textarea" data-pk="1" data-placeholder="Your comments here..." data-placement="right">Add comment</a>
+		</div>
+	</td>
+	<td class="function active">
+		<div>
+			 exonic
+		</div>
+	</td>
+	<td class="gene">
+		<div>
+			 A2ML1
+		</div>
+	</td>
+	<td class="chromosome">
+		<div>
+			 19
+		</div>
+	</td>
+	<td class="endCoordinate">
+		<div>
+			 9016573
+		</div>
+	</td>
+	<td class="cytogeneticBand">
+		<div>
+			 12p13.31
+		</div>
+	</td>
+	<td class="startCoordinate">
+		<div>
+			 9016573
+		</div>
+	</td>
+	<td class="affectedAminoAcid">
+		<div>
+			 A2ML1:NM_001282424
+		</div>
+	</td>
+	<td class="proteinChange">
+		<div>
+			 p.H1229R
+		</div>
+	</td>
+	<td class="granthamScore">
+		<div>
+			 29
+		</div>
+	</td>
+	<td class="functionalConsequence">
+		<div>
+			 missense
+		</div>
+	</td>
+	<td class="transcript">
+		<div>
+			 NM_144670.4
+		</div>
+	</td>
+	<td class="nucleotideChange">
+		<div>
+			 c.3686A&gt;G
+		</div>
+	</td>
+	<td class="_fid">
+		<div>
+			 4
+		</div>
+	</td>
+	<td class="_selected">
+		<div>
+			 false
+		</div>
+	</td>
+</tr>
+<tr id="5">
+	<td class="btntd">
+		<div>
+			<label class="checkbox"><input type="checkbox"><i></i></label><span>2</span>
+		</div>
+	</td>
+	<td class="btntd">
+		<div>
+			<button class="btn btn-link reset-padding" data-toggle="button"><i class="i-star"></i></button>
+		</div>
+	</td>
+	<td class="comment">
+		<div>
+			<a href="#" class="btn-link-default comment-link" data-type="textarea" data-pk="1" data-placeholder="Your comments here..." data-placement="right">Add comment</a>
+		</div>
+	</td>
+	<td class="function active">
+		<div>
+			 exonic
+		</div>
+	</td>
+	<td class="gene">
+		<div>
+			 A2ML1
+		</div>
+	</td>
+	<td class="chromosome">
+		<div>
+			 19
+		</div>
+	</td>
+	<td class="endCoordinate">
+		<div>
+			 9016573
+		</div>
+	</td>
+	<td class="cytogeneticBand">
+		<div>
+			 12p13.31
+		</div>
+	</td>
+	<td class="startCoordinate">
+		<div>
+			 9016573
+		</div>
+	</td>
+	<td class="affectedAminoAcid">
+		<div>
+			 A2ML1:NM_001282424
+		</div>
+	</td>
+	<td class="proteinChange">
+		<div>
+			 p.H1229R
+		</div>
+	</td>
+	<td class="granthamScore">
+		<div>
+			 29
+		</div>
+	</td>
+	<td class="functionalConsequence">
+		<div>
+			 missense
+		</div>
+	</td>
+	<td class="transcript">
+		<div>
+			 NM_144670.4
+		</div>
+	</td>
+	<td class="nucleotideChange">
+		<div>
+			 c.3686A&gt;G
+		</div>
+	</td>
+	<td class="_fid">
+		<div>
+			 5
+		</div>
+	</td>
+	<td class="_selected">
+		<div>
+			 false
+		</div>
+	</td>
+</tr>
+<tr id="6">
+	<td class="btntd">
+		<div>
+			<label class="checkbox"><input type="checkbox"><i></i></label><span>2</span>
+		</div>
+	</td>
+	<td class="btntd">
+		<div>
+			<button class="btn btn-link reset-padding" data-toggle="button"><i class="i-star"></i></button>
+		</div>
+	</td>
+	<td class="comment">
+		<div>
+			<a href="#" class="btn-link-default comment-link" data-type="textarea" data-pk="1" data-placeholder="Your comments here..." data-placement="right">Navin's speciality is single-cell sequencing, which allows his lab to study tumour cells that are circulating in the blood. One might only collect 10 or 20 cells in a sample.</a>
+		</div>
+	</div>
+</td>
+<td class="function active">
+	<div>
+		 exonic
+	</div>
+</td>
+<td class="gene">
+	<div>
+		 A2ML1
+	</div>
+</td>
+<td class="chromosome">
+	<div>
+		 19
+	</div>
+</td>
+<td class="endCoordinate">
+	<div>
+		 9016573
+	</div>
+</td>
+<td class="cytogeneticBand">
+	<div>
+		 12p13.31
+	</div>
+</td>
+<td class="startCoordinate">
+	<div>
+		 9016573
+	</div>
+</td>
+<td class="affectedAminoAcid">
+	<div>
+		 A2ML1:NM_001282424
+	</div>
+</td>
+<td class="proteinChange">
+	<div>
+		 p.H1229R
+	</div>
+</td>
+<td class="granthamScore">
+	<div>
+		 29
+	</div>
+</td>
+<td class="functionalConsequence">
+	<div>
+		 missense
+	</div>
+</td>
+<td class="transcript">
+	<div>
+		 NM_144670.4
+	</div>
+</td>
+<td class="nucleotideChange">
+	<div>
+		 c.3686A&gt;G
+	</div>
+</td>
+<td class="_fid">
+	<div>
+		 6
+	</div>
+</td>
+<td class="_selected">
+	<div>
+		 false
+	</div>
+</td>
+</tr>
+<tr id="7">
+<td class="btntd">
+	<div>
+		<label class="checkbox"><input type="checkbox"><i></i></label><span>2</span>
+	</div>
+</td>
+<td class="btntd">
+	<div>
+		<button class="btn btn-link reset-padding" data-toggle="button"><i class="i-star"></i></button>
+	</div>
+</td>
+<td class="comment">
+	<div>
+		<a href="#" class="btn-link-default comment-link" data-type="textarea" data-pk="1" data-placeholder="Your comments here..." data-placement="right">Add comment</a>
+	</div>
+</td>
+<td class="function active">
+	<div>
+		 exonic
+	</div>
+</td>
+<td class="gene">
+	<div>
+		 A2ML1
+	</div>
+</td>
+<td class="chromosome">
+	<div>
+		 19
+	</div>
+</td>
+<td class="endCoordinate">
+	<div>
+		 9016573
+	</div>
+</td>
+<td class="cytogeneticBand">
+	<div>
+		 12p13.31
+	</div>
+</td>
+<td class="startCoordinate">
+	<div>
+		 9016573
+	</div>
+</td>
+<td class="affectedAminoAcid">
+	<div>
+		 A2ML1:NM_001282424
+	</div>
+</td>
+<td class="proteinChange">
+	<div>
+		 p.H1229R
+	</div>
+</td>
+<td class="granthamScore">
+	<div>
+		 29
+	</div>
+</td>
+<td class="functionalConsequence">
+	<div>
+		 missense
+	</div>
+</td>
+<td class="transcript">
+	<div>
+		 NM_144670.4
+	</div>
+</td>
+<td class="nucleotideChange">
+	<div>
+		 c.3686A&gt;G
+	</div>
+</td>
+<td class="_fid">
+	<div>
+		 7
+	</div>
+</td>
+<td class="_selected">
+	<div>
+		 false
+	</div>
+</td>
+</tr>
+<tr id="8">
+<td class="btntd">
+	<div>
+		<label class="checkbox"><input type="checkbox"><i></i></label><span>2</span>
+	</div>
+</td>
+<td class="btntd">
+	<div>
+		<button class="btn btn-link reset-padding" data-toggle="button"><i class="i-star"></i></button>
+	</div>
+</td>
+<td class="comment">
+	<div>
+		<a href="#" class="btn-link-default comment-link" data-type="textarea" data-pk="1" data-placeholder="Your comments here..." data-placement="right">Navin's speciality is single-cell sequencing, which allows his lab to study tumour cells that are circulating in the blood. One might only collect 10 or 20 cells in a sample.</a>
+	</div>
+</td>
+<td class="function active">
+	<div>
+		 exonic
+	</div>
+</td>
+<td class="gene">
+	<div>
+		 A2ML1
+	</div>
+</td>
+<td class="chromosome">
+	<div>
+		 19
+	</div>
+</td>
+<td class="endCoordinate">
+	<div>
+		 9016573
+	</div>
+</td>
+<td class="cytogeneticBand">
+	<div>
+		 12p13.31
+	</div>
+</td>
+<td class="startCoordinate">
+	<div>
+		 9016573
+	</div>
+</td>
+<td class="affectedAminoAcid">
+	<div>
+		 A2ML1:NM_001282424
+	</div>
+</td>
+<td class="proteinChange">
+	<div>
+		 p.H1229R
+	</div>
+</td>
+<td class="granthamScore">
+	<div>
+		 29
+	</div>
+</td>
+<td class="functionalConsequence">
+	<div>
+		 missense
+	</div>
+</td>
+<td class="transcript">
+	<div>
+		 NM_144670.4
+	</div>
+</td>
+<td class="nucleotideChange">
+	<div>
+		 c.3686A&gt;G
+	</div>
+</td>
+<td class="_fid">
+	<div>
+		 8
+	</div>
+</td>
+<td class="_selected">
+	<div>
+		 false
+	</div>
+</td>
+</tr>
+<tr id="9">
+<td class="btntd">
+	<div>
+		<label class="checkbox"><input type="checkbox"><i></i></label><span>2</span>
+	</div>
+</td>
+<td class="btntd">
+	<div>
+		<button class="btn btn-link reset-padding" data-toggle="button"><i class="i-star"></i></button>
+	</div>
+</td>
+<td class="comment">
+	<div>
+		<a href="#" class="btn-link-default comment-link" data-type="textarea" data-pk="1" data-placeholder="Your comments here..." data-placement="right">Navin's speciality is single-cell sequencing, which allows his lab to study tumour cells that are circulating in the blood. One might only collect 10 or 20 cells in a sample.</a>
+	</div>
+</td>
+<td class="function active">
+	<div>
+		 exonic
+	</div>
+</td>
+<td class="gene">
+	<div>
+		 A2ML1
+	</div>
+</td>
+<td class="chromosome">
+	<div>
+		 19
+	</div>
+</td>
+<td class="endCoordinate">
+	<div>
+		 9016573
+	</div>
+</td>
+<td class="cytogeneticBand">
+	<div>
+		 12p13.31
+	</div>
+</td>
+<td class="startCoordinate">
+	<div>
+		 9016573
+	</div>
+</td>
+<td class="affectedAminoAcid">
+	<div>
+		 A2ML1:NM_001282424
+	</div>
+</td>
+<td class="proteinChange">
+	<div>
+		 p.H1229R
+	</div>
+</td>
+<td class="granthamScore">
+	<div>
+		 29
+	</div>
+</td>
+<td class="functionalConsequence">
+	<div>
+		 missense
+	</div>
+</td>
+<td class="transcript">
+	<div>
+		 NM_144670.4
+	</div>
+</td>
+<td class="nucleotideChange">
+	<div>
+		 c.3686A&gt;G
+	</div>
+</td>
+<td class="_fid">
+	<div>
+		 9
+	</div>
+</td>
+<td class="_selected">
+	<div>
+		 false
+	</div>
+</td>
+</tr>
+<tr id="10">
+<td class="btntd">
+	<div>
+		<label class="checkbox"><input type="checkbox"><i></i></label><span>2</span>
+	</div>
+</td>
+<td class="btntd">
+	<div>
+		<button class="btn btn-link reset-padding" data-toggle="button"><i class="i-star"></i></button>
+	</div>
+</td>
+<td class="comment">
+	<div>
+		<a href="#" class="btn-link-default comment-link" data-type="textarea" data-pk="1" data-placeholder="Your comments here..." data-placement="right">Navin's speciality is single-cell sequencing, which allows his lab to study tumour cells that are circulating in the blood. One might only collect 10 or 20 cells in a sample.</a>
+	</div>
+</td>
+<td class="function active">
+	<div>
+		 exonic
+	</div>
+</td>
+<td class="gene">
+	<div>
+		 A2ML1
+	</div>
+</td>
+<td class="chromosome">
+	<div>
+		 19
+	</div>
+</td>
+<td class="endCoordinate">
+	<div>
+		 9016573
+	</div>
+</td>
+<td class="cytogeneticBand">
+	<div>
+		 12p13.31
+	</div>
+</td>
+<td class="startCoordinate">
+	<div>
+		 9016573
+	</div>
+</td>
+<td class="affectedAminoAcid">
+	<div>
+		 A2ML1:NM_001282424
+	</div>
+</td>
+<td class="proteinChange">
+	<div>
+		 p.H1229R
+	</div>
+</td>
+<td class="granthamScore">
+	<div>
+		 29
+	</div>
+</td>
+<td class="functionalConsequence">
+	<div>
+		 missense
+	</div>
+</td>
+<td class="transcript">
+	<div>
+		 NM_144670.4
+	</div>
+</td>
+<td class="nucleotideChange">
+	<div>
+		 c.3686A&gt;G
+	</div>
+</td>
+<td class="_fid">
+	<div>
+		 10
+	</div>
+</td>
+<td class="_selected">
+	<div>
+		 false
+	</div>
+</td>
+</tr>
+<tr id="11">
+<td class="btntd">
+	<div>
+		<label class="checkbox"><input type="checkbox"><i></i></label><span>2</span>
+	</div>
+</td>
+<td class="btntd">
+	<div>
+		<button class="btn btn-link reset-padding" data-toggle="button"><i class="i-star"></i></button>
+	</div>
+</td>
+<td class="comment">
+	<div>
+		<a href="#" class="btn-link-default comment-link" data-type="textarea" data-pk="1" data-placeholder="Your comments here..." data-placement="right">Navin's speciality is single-cell sequencing, which allows his lab to study tumour cells that are circulating in the blood. One might only collect 10 or 20 cells in a sample.</a>
+	</div>
+</td>
+<td class="function active">
+	<div>
+		 exonic
+	</div>
+</td>
+<td class="gene">
+	<div>
+		 A2ML1
+	</div>
+</td>
+<td class="chromosome">
+	<div>
+		 19
+	</div>
+</td>
+<td class="endCoordinate">
+	<div>
+		 9016573
+	</div>
+</td>
+<td class="cytogeneticBand">
+	<div>
+		 12p13.31
+	</div>
+</td>
+<td class="startCoordinate">
+	<div>
+		 9016573
+	</div>
+</td>
+<td class="affectedAminoAcid">
+	<div>
+		 A2ML1:NM_001282424
+	</div>
+</td>
+<td class="proteinChange">
+	<div>
+		 p.H1229R
+	</div>
+</td>
+<td class="granthamScore">
+	<div>
+		 29
+	</div>
+</td>
+<td class="functionalConsequence">
+	<div>
+		 missense
+	</div>
+</td>
+<td class="transcript">
+	<div>
+		 NM_144670.4
+	</div>
+</td>
+<td class="nucleotideChange">
+	<div>
+		 c.3686A&gt;G
+	</div>
+</td>
+<td class="_fid">
+	<div>
+		 11
+	</div>
+</td>
+<td class="_selected">
+	<div>
+		 false
+	</div>
+</td>
+</tr>
+<tr id="12">
+<td class="btntd">
+	<div>
+		<label class="checkbox"><input type="checkbox"><i></i></label><span>2</span>
+	</div>
+</td>
+<td class="btntd">
+	<div>
+		<button class="btn btn-link reset-padding" data-toggle="button"><i class="i-star"></i></button>
+	</div>
+</td>
+<td class="comment">
+	<div>
+		<a href="#" class="btn-link-default comment-link" data-type="textarea" data-pk="1" data-placeholder="Your comments here..." data-placement="right">Navin's speciality is single-cell sequencing, which allows his lab to study tumour cells that are circulating in the blood. One might only collect 10 or 20 cells in a sample.</a>
+	</div>
+</div>
+</td>
+<td class="function active">
+<div>
+	 exonic
+</div>
+</td>
+<td class="gene">
+<div>
+	 A2ML1
+</div>
+</td>
+<td class="chromosome">
+<div>
+	 19
+</div>
+</td>
+<td class="endCoordinate">
+<div>
+	 9016573
+</div>
+</td>
+<td class="cytogeneticBand">
+<div>
+	 12p13.31
+</div>
+</td>
+<td class="startCoordinate">
+<div>
+	 9016573
+</div>
+</td>
+<td class="affectedAminoAcid">
+<div>
+	 A2ML1:NM_001282424
+</div>
+</td>
+<td class="proteinChange">
+<div>
+	 p.H1229R
+</div>
+</td>
+<td class="granthamScore">
+<div>
+	 29
+</div>
+</td>
+<td class="functionalConsequence">
+<div>
+	 missense
+</div>
+</td>
+<td class="transcript">
+<div>
+	 NM_144670.4
+</div>
+</td>
+<td class="nucleotideChange">
+<div>
+	 c.3686A&gt;G
+</div>
+</td>
+<td class="_fid">
+<div>
+	 12
+</div>
+</td>
+<td class="_selected">
+<div>
+	 false
+</div>
+</td>
+</tr>
+<tr id="13">
+<td class="btntd">
+<div>
+	<label class="checkbox"><input type="checkbox"><i></i></label><span>2</span>
+</div>
+</td>
+<td class="btntd">
+<div>
+	<button class="btn btn-link reset-padding" data-toggle="button"><i class="i-star"></i></button>
+</div>
+</td>
+<td class="comment">
+<div>
+	<a href="#" class="btn-link-default comment-link" data-type="textarea" data-pk="1" data-placeholder="Your comments here..." data-placement="right">Navin's speciality is single-cell sequencing, which allows his lab to study tumour cells that are circulating in the blood. One might only collect 10 or 20 cells in a sample.</a>
+</div>
+</div>
+</td>
+<td class="function active">
+<div>
+ exonic
+</div>
+</td>
+<td class="gene">
+<div>
+ A2ML1
+</div>
+</td>
+<td class="chromosome">
+<div>
+ 19
+</div>
+</td>
+<td class="endCoordinate">
+<div>
+ 9016573
+</div>
+</td>
+<td class="cytogeneticBand">
+<div>
+ 12p13.31
+</div>
+</td>
+<td class="startCoordinate">
+<div>
+ 9016573
+</div>
+</td>
+<td class="affectedAminoAcid">
+<div>
+ A2ML1:NM_001282424
+</div>
+</td>
+<td class="proteinChange">
+<div>
+ p.H1229R
+</div>
+</td>
+<td class="granthamScore">
+<div>
+ 29
+</div>
+</td>
+<td class="functionalConsequence">
+<div>
+ missense
+</div>
+</td>
+<td class="transcript">
+<div>
+ NM_144670.4
+</div>
+</td>
+<td class="nucleotideChange">
+<div>
+ c.3686A&gt;G
+</div>
+</td>
+<td class="_fid">
+<div>
+ 13
+</div>
+</td>
+<td class="_selected">
+<div>
+ false
+</div>
+</td>
+</tr>
+<tr id="14">
+<td class="btntd">
+<div>
+<label class="checkbox"><input type="checkbox"><i></i></label><span>2</span>
+</div>
+</td>
+<td class="btntd">
+<div>
+<button class="btn btn-link reset-padding" data-toggle="button"><i class="i-star"></i></button>
+</div>
+</td>
+<td class="comment">
+<div>
+<a href="#" class="btn-link-default comment-link" data-type="textarea" data-pk="1" data-placeholder="Your comments here..." data-placement="right">Navin's speciality is single-cell sequencing, which allows his lab to study tumour cells that are circulating in the blood. One might only collect 10 or 20 cells in a sample.</a>
+</div>
+</td>
+<td class="function active">
+<div>
+ exonic
+</div>
+</td>
+<td class="gene">
+<div>
+ A2ML1
+</div>
+</td>
+<td class="chromosome">
+<div>
+ 19
+</div>
+</td>
+<td class="endCoordinate">
+<div>
+ 9016573
+</div>
+</td>
+<td class="cytogeneticBand">
+<div>
+ 12p13.31
+</div>
+</td>
+<td class="startCoordinate">
+<div>
+ 9016573
+</div>
+</td>
+<td class="affectedAminoAcid">
+<div>
+ A2ML1:NM_001282424
+</div>
+</td>
+<td class="proteinChange">
+<div>
+ p.H1229R
+</div>
+</td>
+<td class="granthamScore">
+<div>
+ 29
+</div>
+</td>
+<td class="functionalConsequence">
+<div>
+ missense
+</div>
+</td>
+<td class="transcript">
+<div>
+ NM_144670.4
+</div>
+</td>
+<td class="nucleotideChange">
+<div>
+ c.3686A&gt;G
+</div>
+</td>
+<td class="_fid">
+<div>
+ 14
+</div>
+</td>
+<td class="_selected">
+<div>
+ false
+</div>
+</td>
+</tr>
+<tr id="15">
+<td class="btntd">
+<div>
+<label class="checkbox"><input type="checkbox"><i></i></label><span>2</span>
+</div>
+</td>
+<td class="btntd">
+<div>
+<button class="btn btn-link reset-padding" data-toggle="button"><i class="i-star"></i></button>
+</div>
+</td>
+<td class="comment">
+<div>
+<a href="#" class="btn-link-default comment-link" data-type="textarea" data-pk="1" data-placeholder="Your comments here..." data-placement="right">Navin's speciality is single-cell sequencing, which allows his lab to study tumour cells that are circulating in the blood. One might only collect 10 or 20 cells in a sample.</a>
+</div>
+</td>
+<td class="function active">
+<div>
+ exonic
+</div>
+</td>
+<td class="gene">
+<div>
+ A2ML1
+</div>
+</td>
+<td class="chromosome">
+<div>
+ 19
+</div>
+</td>
+<td class="endCoordinate">
+<div>
+ 9016573
+</div>
+</td>
+<td class="cytogeneticBand">
+<div>
+ 12p13.31
+</div>
+</td>
+<td class="startCoordinate">
+<div>
+ 9016573
+</div>
+</td>
+<td class="affectedAminoAcid">
+<div>
+ A2ML1:NM_001282424
+</div>
+</td>
+<td class="proteinChange">
+<div>
+ p.H1229R
+</div>
+</td>
+<td class="granthamScore">
+<div>
+ 29
+</div>
+</td>
+<td class="functionalConsequence">
+<div>
+ missense
+</div>
+</td>
+<td class="transcript">
+<div>
+ NM_144670.4
+</div>
+</td>
+<td class="nucleotideChange">
+<div>
+ c.3686A&gt;G
+</div>
+</td>
+<td class="_fid">
+<div>
+ 15
+</div>
+</td>
+<td class="_selected">
+<div>
+ false
+</div>
+</td>
+</tr>
+<tr id="16">
+<td class="btntd">
+<div>
+<label class="checkbox"><input type="checkbox"><i></i></label><span>2</span>
+</div>
+</td>
+<td class="btntd">
+<div>
+<button class="btn btn-link reset-padding" data-toggle="button"><i class="i-star"></i></button>
+</div>
+</td>
+<td class="comment">
+<div>
+<a href="#" class="btn-link-default comment-link" data-type="textarea" data-pk="1" data-placeholder="Your comments here..." data-placement="right">Navin's speciality is single-cell sequencing, which allows his lab to study tumour cells that are circulating in the blood. One might only collect 10 or 20 cells in a sample.</a>
+</div>
+</td>
+<td class="function active">
+<div>
+ exonic
+</div>
+</td>
+<td class="gene">
+<div>
+ A2ML1
+</div>
+</td>
+<td class="chromosome">
+<div>
+ 19
+</div>
+</td>
+<td class="endCoordinate">
+<div>
+ 9016573
+</div>
+</td>
+<td class="cytogeneticBand">
+<div>
+ 12p13.31
+</div>
+</td>
+<td class="startCoordinate">
+<div>
+ 9016573
+</div>
+</td>
+<td class="affectedAminoAcid">
+<div>
+ A2ML1:NM_001282424
+</div>
+</td>
+<td class="proteinChange">
+<div>
+ p.H1229R
+</div>
+</td>
+<td class="granthamScore">
+<div>
+ 29
+</div>
+</td>
+<td class="functionalConsequence">
+<div>
+ missense
+</div>
+</td>
+<td class="transcript">
+<div>
+ NM_144670.4
+</div>
+</td>
+<td class="nucleotideChange">
+<div>
+ c.3686A&gt;G
+</div>
+</td>
+<td class="_fid">
+<div>
+ 16
+</div>
+</td>
+<td class="_selected">
+<div>
+ false
+</div>
+</td>
+</tr>
+<tr id="17">
+<td class="btntd">
+<div>
+<label class="checkbox"><input type="checkbox"><i></i></label><span>2</span>
+</div>
+</td>
+<td class="btntd">
+<div>
+<button class="btn btn-link reset-padding" data-toggle="button"><i class="i-star"></i></button>
+</div>
+</td>
+<td class="comment">
+<div>
+<a href="#" class="btn-link-default comment-link" data-type="textarea" data-pk="1" data-placeholder="Your comments here..." data-placement="right">Navin's speciality is single-cell sequencing, which allows his lab to study tumour cells that are circulating in the blood. One might only collect 10 or 20 cells in a sample.</a>
+</div>
+</td>
+<td class="function active">
+<div>
+ exonic
+</div>
+</td>
+<td class="gene">
+<div>
+ A2ML1
+</div>
+</td>
+<td class="chromosome">
+<div>
+ 19
+</div>
+</td>
+<td class="endCoordinate">
+<div>
+ 9016573
+</div>
+</td>
+<td class="cytogeneticBand">
+<div>
+ 12p13.31
+</div>
+</td>
+<td class="startCoordinate">
+<div>
+ 9016573
+</div>
+</td>
+<td class="affectedAminoAcid">
+<div>
+ A2ML1:NM_001282424
+</div>
+</td>
+<td class="proteinChange">
+<div>
+ p.H1229R
+</div>
+</td>
+<td class="granthamScore">
+<div>
+ 29
+</div>
+</td>
+<td class="functionalConsequence">
+<div>
+ missense
+</div>
+</td>
+<td class="transcript">
+<div>
+ NM_144670.4
+</div>
+</td>
+<td class="nucleotideChange">
+<div>
+ c.3686A&gt;G
+</div>
+</td>
+<td class="_fid">
+<div>
+ 17
+</div>
+</td>
+<td class="_selected">
+<div>
+ false
+</div>
+</td>
+</tr>
+<tr id="18">
+<td class="btntd">
+<div>
+<label class="checkbox"><input type="checkbox"><i></i></label><span>2</span>
+</div>
+</td>
+<td class="btntd">
+<div>
+<button class="btn btn-link reset-padding" data-toggle="button"><i class="i-star"></i></button>
+</div>
+</td>
+<td class="comment">
+<div>
+<a href="#" class="btn-link-default comment-link" data-type="textarea" data-pk="1" data-placeholder="Your comments here..." data-placement="right">Navin's speciality is single-cell sequencing, which allows his lab to study tumour cells that are circulating in the blood. One might only collect 10 or 20 cells in a sample.</a>
+</div>
+</td>
+<td class="function active">
+<div>
+ exonic
+</div>
+</td>
+<td class="gene">
+<div>
+ A2ML1
+</div>
+</td>
+<td class="chromosome">
+<div>
+ 19
+</div>
+</td>
+<td class="endCoordinate">
+<div>
+ 9016573
+</div>
+</td>
+<td class="cytogeneticBand">
+<div>
+ 12p13.31
+</div>
+</td>
+<td class="startCoordinate">
+<div>
+ 9016573
+</div>
+</td>
+<td class="affectedAminoAcid">
+<div>
+ A2ML1:NM_001282424
+</div>
+</td>
+<td class="proteinChange">
+<div>
+ p.H1229R
+</div>
+</td>
+<td class="granthamScore">
+<div>
+ 29
+</div>
+</td>
+<td class="functionalConsequence">
+<div>
+ missense
+</div>
+</td>
+<td class="transcript">
+<div>
+ NM_144670.4
+</div>
+</td>
+<td class="nucleotideChange">
+<div>
+ c.3686A&gt;G
+</div>
+</td>
+<td class="_fid">
+<div>
+ 18
+</div>
+</td>
+<td class="_selected">
+<div>
+ false
+</div>
+</td>
+</tr>
+<tr id="19">
+<td class="btntd">
+<div>
+<label class="checkbox"><input type="checkbox"><i></i></label><span>2</span>
+</div>
+</td>
+<td class="btntd">
+<div>
+<button class="btn btn-link reset-padding" data-toggle="button"><i class="i-star"></i></button>
+</div>
+</td>
+<td class="comment">
+<div>
+<a href="#" class="btn-link-default comment-link" data-type="textarea" data-pk="1" data-placeholder="Your comments here..." data-placement="right">Navin's speciality is single-cell sequencing, which allows his lab to study tumour cells that are circulating in the blood. One might only collect 10 or 20 cells in a sample.</a>
+</div>
+</td>
+<td class="function active">
+<div>
+ exonic
+</div>
+</td>
+<td class="gene">
+<div>
+ A2ML1
+</div>
+</td>
+<td class="chromosome">
+<div>
+ 19
+</div>
+</td>
+<td class="endCoordinate">
+<div>
+ 9016573
+</div>
+</td>
+<td class="cytogeneticBand">
+<div>
+ 12p13.31
+</div>
+</td>
+<td class="startCoordinate">
+<div>
+ 9016573
+</div>
+</td>
+<td class="affectedAminoAcid">
+<div>
+ A2ML1:NM_001282424
+</div>
+</td>
+<td class="proteinChange">
+<div>
+ p.H1229R
+</div>
+</td>
+<td class="granthamScore">
+<div>
+ 29
+</div>
+</td>
+<td class="functionalConsequence">
+<div>
+ missense
+</div>
+</td>
+<td class="transcript">
+<div>
+ NM_144670.4
+</div>
+</td>
+<td class="nucleotideChange">
+<div>
+ c.3686A&gt;G
+</div>
+</td>
+<td class="_fid">
+<div>
+ 19
+</div>
+</td>
+<td class="_selected">
+<div>
+ false
+</div>
+</td>
+</tr>
+<tr id="20">
+<td class="btntd">
+<div>
+<label class="checkbox"><input type="checkbox"><i></i></label><span>2</span>
+</div>
+</td>
+<td class="btntd">
+<div>
+<button class="btn btn-link reset-padding" data-toggle="button"><i class="i-star"></i></button>
+</div>
+</td>
+<td class="comment">
+<div>
+<a href="#" class="btn-link-default comment-link" data-type="textarea" data-pk="1" data-placeholder="Your comments here..." data-placement="right">Navin's speciality is single-cell sequencing, which allows his lab to study tumour cells that are circulating in the blood. One might only collect 10 or 20 cells in a sample.</a>
+</div>
+</td>
+<td class="function active">
+<div>
+ exonic
+</div>
+</td>
+<td class="gene">
+<div>
+ A2ML1
+</div>
+</td>
+<td class="chromosome">
+<div>
+ 19
+</div>
+</td>
+<td class="endCoordinate">
+<div>
+ 9016573
+</div>
+</td>
+<td class="cytogeneticBand">
+<div>
+ 12p13.31
+</div>
+</td>
+<td class="startCoordinate">
+<div>
+ 9016573
+</div>
+</td>
+<td class="affectedAminoAcid">
+<div>
+ A2ML1:NM_001282424
+</div>
+</td>
+<td class="proteinChange">
+<div>
+ p.H1229R
+</div>
+</td>
+<td class="granthamScore">
+<div>
+ 29
+</div>
+</td>
+<td class="functionalConsequence">
+<div>
+ missense
+</div>
+</td>
+<td class="transcript">
+<div>
+ NM_144670.4
+</div>
+</td>
+<td class="nucleotideChange">
+<div>
+ c.3686A&gt;G
+</div>
+</td>
+<td class="_fid">
+<div>
+ 20
+</div>
+</td>
+<td class="_selected">
+<div>
+ false
+</div>
+</td>
+</tr>
+<tr id="21">
+<td class="btntd">
+<div>
+<label class="checkbox"><input type="checkbox"><i></i></label><span>2</span>
+</div>
+</td>
+<td class="btntd">
+<div>
+<button class="btn btn-link reset-padding" data-toggle="button"><i class="i-star"></i></button>
+</div>
+</td>
+<td class="comment">
+<div>
+<a href="#" class="btn-link-default comment-link" data-type="textarea" data-pk="1" data-placeholder="Your comments here..." data-placement="right">Navin's speciality is single-cell sequencing, which allows his lab to study tumour cells that are circulating in the blood. One might only collect 10 or 20 cells in a sample.</a>
+</div>
+</td>
+<td class="function active">
+<div>
+ exonic
+</div>
+</td>
+<td class="gene">
+<div>
+ A2ML1
+</div>
+</td>
+<td class="chromosome">
+<div>
+ 19
+</div>
+</td>
+<td class="endCoordinate">
+<div>
+ 9016573
+</div>
+</td>
+<td class="cytogeneticBand">
+<div>
+ 12p13.31
+</div>
+</td>
+<td class="startCoordinate">
+<div>
+ 9016573
+</div>
+</td>
+<td class="affectedAminoAcid">
+<div>
+ A2ML1:NM_001282424
+</div>
+</td>
+<td class="proteinChange">
+<div>
+ p.H1229R
+</div>
+</td>
+<td class="granthamScore">
+<div>
+ 29
+</div>
+</td>
+<td class="functionalConsequence">
+<div>
+ missense
+</div>
+</td>
+<td class="transcript">
+<div>
+ NM_144670.4
+</div>
+</td>
+<td class="nucleotideChange">
+<div>
+ c.3686A&gt;G
+</div>
+</td>
+<td class="_fid">
+<div>
+ 21
+</div>
+</td>
+<td class="_selected">
+<div>
+ false
+</div>
+</td>
+</tr>
+<tr id="22">
+<td class="btntd">
+<div>
+<label class="checkbox"><input type="checkbox"><i></i></label><span>2</span>
+</div>
+</td>
+<td class="btntd">
+<div>
+<button class="btn btn-link reset-padding" data-toggle="button"><i class="i-star"></i></button>
+</div>
+</td>
+<td class="comment">
+<div>
+<a href="#" class="btn-link-default comment-link" data-type="textarea" data-pk="1" data-placeholder="Your comments here..." data-placement="right">Navin's speciality is single-cell sequencing, which allows his lab to study tumour cells that are circulating in the blood. One might only collect 10 or 20 cells in a sample.</a>
+</div>
+</td>
+<td class="function active">
+<div>
+ exonic
+</div>
+</td>
+<td class="gene">
+<div>
+ A2ML1
+</div>
+</td>
+<td class="chromosome">
+<div>
+ 19
+</div>
+</td>
+<td class="endCoordinate">
+<div>
+ 9016573
+</div>
+</td>
+<td class="cytogeneticBand">
+<div>
+ 12p13.31
+</div>
+</td>
+<td class="startCoordinate">
+<div>
+ 9016573
+</div>
+</td>
+<td class="affectedAminoAcid">
+<div>
+ A2ML1:NM_001282424
+</div>
+</td>
+<td class="proteinChange">
+<div>
+ p.H1229R
+</div>
+</td>
+<td class="granthamScore">
+<div>
+ 29
+</div>
+</td>
+<td class="functionalConsequence">
+<div>
+ missense
+</div>
+</td>
+<td class="transcript">
+<div>
+ NM_144670.4
+</div>
+</td>
+<td class="nucleotideChange">
+<div>
+ c.3686A&gt;G
+</div>
+</td>
+<td class="_fid">
+<div>
+ 22
+</div>
+</td>
+<td class="_selected">
+<div>
+ false
+</div>
+</td>
+</tr>
+<tr id="23">
+<td class="btntd">
+<div>
+<label class="checkbox"><input type="checkbox"><i></i></label><span>2</span>
+</div>
+</td>
+<td class="btntd">
+<div>
+<button class="btn btn-link reset-padding" data-toggle="button"><i class="i-star"></i></button>
+</div>
+</td>
+<td class="comment">
+<div>
+<a href="#" class="btn-link-default comment-link" data-type="textarea" data-pk="1" data-placeholder="Your comments here..." data-placement="right">Navin's speciality is single-cell sequencing, which allows his lab to study tumour cells that are circulating in the blood. One might only collect 10 or 20 cells in a sample.</a>
+</div>
+</td>
+<td class="function active">
+<div>
+ exonic
+</div>
+</td>
+<td class="gene">
+<div>
+ A2ML1
+</div>
+</td>
+<td class="chromosome">
+<div>
+ 19
+</div>
+</td>
+<td class="endCoordinate">
+<div>
+ 9016573
+</div>
+</td>
+<td class="cytogeneticBand">
+<div>
+ 12p13.31
+</div>
+</td>
+<td class="startCoordinate">
+<div>
+ 9016573
+</div>
+</td>
+<td class="affectedAminoAcid">
+<div>
+ A2ML1:NM_001282424
+</div>
+</td>
+<td class="proteinChange">
+<div>
+ p.H1229R
+</div>
+</td>
+<td class="granthamScore">
+<div>
+ 29
+</div>
+</td>
+<td class="functionalConsequence">
+<div>
+ missense
+</div>
+</td>
+<td class="transcript">
+<div>
+ NM_144670.4
+</div>
+</td>
+<td class="nucleotideChange">
+<div>
+ c.3686A&gt;G
+</div>
+</td>
+<td class="_fid">
+<div>
+ 23
+</div>
+</td>
+<td class="_selected">
+<div>
+ false
+</div>
+</td>
+</tr>
+<tr id="24">
+<td class="btntd">
+<div>
+<label class="checkbox"><input type="checkbox"><i></i></label><span>2</span>
+</div>
+</td>
+<td class="btntd">
+<div>
+<button class="btn btn-link reset-padding" data-toggle="button"><i class="i-star"></i></button>
+</div>
+</td>
+<td class="comment">
+<div>
+<a href="#" class="btn-link-default comment-link" data-type="textarea" data-pk="1" data-placeholder="Your comments here..." data-placement="right">Navin's speciality is single-cell sequencing, which allows his lab to study tumour cells that are circulating in the blood. One might only collect 10 or 20 cells in a sample.</a>
+</div>
+</div>
+</td>
+<td class="function active">
+<div>
+ exonic
+</div>
+</td>
+<td class="gene">
+<div>
+ A1BG
+</div>
+</td>
+<td class="chromosome">
+<div>
+ 19
+</div>
+</td>
+<td class="endCoordinate">
+<div>
+ 58864479
+</div>
+</td>
+<td class="cytogeneticBand">
+<div>
+ 19q13.43
+</div>
+</td>
+<td class="startCoordinate">
+<div>
+ 58864479
+</div>
+</td>
+<td class="affectedAminoAcid">
+<div>
+ A1BG:NM_130786.3:ex
+</div>
+</td>
+<td class="proteinChange">
+<div>
+ p.H52R
+</div>
+</td>
+<td class="granthamScore">
+<div>
+ 29
+</div>
+</td>
+<td class="functionalConsequence">
+<div>
+ missense
+</div>
+</td>
+<td class="transcript">
+<div>
+ NM_130786.3
+</div>
+</td>
+<td class="nucleotideChange">
+<div>
+ c.155A&gt;G
+</div>
+</td>
+<td class="_fid">
+<div>
+ 24
+</div>
+</td>
+<td class="_selected">
+<div>
+ false
+</div>
+</td>
+</tr>
+<tr id="25">
+<td class="btntd">
+<div>
+<label class="checkbox"><input type="checkbox"><i></i></label><span>2</span>
+</div>
+</td>
+<td class="btntd">
+<div>
+<button class="btn btn-link reset-padding" data-toggle="button"><i class="i-star"></i></button>
+</div>
+</td>
+<td class="comment">
+<div>
+<a href="#" class="btn-link-default comment-link" data-type="textarea" data-pk="1" data-placeholder="Your comments here..." data-placement="right">Navin's speciality is single-cell sequencing, which allows his lab to study tumour cells that are circulating in the blood. One might only collect 10 or 20 cells in a sample.</a>
+</div>
+</td>
+<td class="function active">
+<div>
+ exonic
+</div>
+</td>
+<td class="gene">
+<div>
+ A2ML1
+</div>
+</td>
+<td class="chromosome">
+<div>
+ 19
+</div>
+</td>
+<td class="endCoordinate">
+<div>
+ 9016573
+</div>
+</td>
+<td class="cytogeneticBand">
+<div>
+ 12p13.31
+</div>
+</td>
+<td class="startCoordinate">
+<div>
+ 9016573
+</div>
+</td>
+<td class="affectedAminoAcid">
+<div>
+ A2ML1:NM_001282424
+</div>
+</td>
+<td class="proteinChange">
+<div>
+ p.H1229R
+</div>
+</td>
+<td class="granthamScore">
+<div>
+ 29
+</div>
+</td>
+<td class="functionalConsequence">
+<div>
+ missense
+</div>
+</td>
+<td class="transcript">
+<div>
+ NM_144670.4
+</div>
+</td>
+<td class="nucleotideChange">
+<div>
+ c.3686A&gt;G
+</div>
+</td>
+<td class="_fid">
+<div>
+ 25
+</div>
+</td>
+<td class="_selected">
+<div>
+ false
+</div>
+</td>
+</tr>
+<tr id="26">
+<td class="btntd">
+<div>
+<label class="checkbox"><input type="checkbox"><i></i></label><span>2</span>
+</div>
+</td>
+<td class="btntd">
+<div>
+<button class="btn btn-link reset-padding" data-toggle="button"><i class="i-star"></i></button>
+</div>
+</td>
+<td class="comment">
+<div>
+<a href="#" class="btn-link-default comment-link" data-type="textarea" data-pk="1" data-placeholder="Your comments here..." data-placement="right">Navin's speciality is single-cell sequencing, which allows his lab to study tumour cells that are circulating in the blood. One might only collect 10 or 20 cells in a sample.</a>
+</div>
+</td>
+<td class="function active">
+<div>
+ exonic
+</div>
+</td>
+<td class="gene">
+<div>
+ A2ML1
+</div>
+</td>
+<td class="chromosome">
+<div>
+ 19
+</div>
+</td>
+<td class="endCoordinate">
+<div>
+ 9016573
+</div>
+</td>
+<td class="cytogeneticBand">
+<div>
+ 12p13.31
+</div>
+</td>
+<td class="startCoordinate">
+<div>
+ 9016573
+</div>
+</td>
+<td class="affectedAminoAcid">
+<div>
+ A2ML1:NM_001282424
+</div>
+</td>
+<td class="proteinChange">
+<div>
+ p.H1229R
+</div>
+</td>
+<td class="granthamScore">
+<div>
+ 29
+</div>
+</td>
+<td class="functionalConsequence">
+<div>
+ missense
+</div>
+</td>
+<td class="transcript">
+<div>
+ NM_144670.4
+</div>
+</td>
+<td class="nucleotideChange">
+<div>
+ c.3686A&gt;G
+</div>
+</td>
+<td class="_fid">
+<div>
+ 26
+</div>
+</td>
+<td class="_selected">
+<div>
+ false
+</div>
+</td>
+</tr>
+<tr id="27">
+<td class="btntd">
+<div>
+<label class="checkbox"><input type="checkbox"><i></i></label><span>2</span>
+</div>
+</td>
+<td class="btntd">
+<div>
+<button class="btn btn-link reset-padding" data-toggle="button"><i class="i-star"></i></button>
+</div>
+</td>
+<td class="comment">
+<div>
+<a href="#" class="btn-link-default comment-link" data-type="textarea" data-pk="1" data-placeholder="Your comments here..." data-placement="right">Navin's speciality is single-cell sequencing, which allows his lab to study tumour cells that are circulating in the blood. One might only collect 10 or 20 cells in a sample.</a>
+</div>
+</td>
+<td class="function active">
+<div>
+ exonic
+</div>
+</td>
+<td class="gene">
+<div>
+ A2ML1
+</div>
+</td>
+<td class="chromosome">
+<div>
+ 19
+</div>
+</td>
+<td class="endCoordinate">
+<div>
+ 9016573
+</div>
+</td>
+<td class="cytogeneticBand">
+<div>
+ 12p13.31
+</div>
+</td>
+<td class="startCoordinate">
+<div>
+ 9016573
+</div>
+</td>
+<td class="affectedAminoAcid">
+<div>
+ A2ML1:NM_001282424
+</div>
+</td>
+<td class="proteinChange">
+<div>
+ p.H1229R
+</div>
+</td>
+<td class="granthamScore">
+<div>
+ 29
+</div>
+</td>
+<td class="functionalConsequence">
+<div>
+ missense
+</div>
+</td>
+<td class="transcript">
+<div>
+ NM_144670.4
+</div>
+</td>
+<td class="nucleotideChange">
+<div>
+ c.3686A&gt;G
+</div>
+</td>
+<td class="_fid">
+<div>
+ 27
+</div>
+</td>
+<td class="_selected">
+<div>
+ false
+</div>
+</td>
+</tr>
+<tr id="28">
+<td class="btntd">
+<div>
+<label class="checkbox"><input type="checkbox"><i></i></label><span>2</span>
+</div>
+</td>
+<td class="btntd">
+<div>
+<button class="btn btn-link reset-padding" data-toggle="button"><i class="i-star"></i></button>
+</div>
+</td>
+<td class="comment">
+<div>
+<a href="#" class="btn-link-default comment-link" data-type="textarea" data-pk="1" data-placeholder="Your comments here..." data-placement="right">Navin's speciality is single-cell sequencing, which allows his lab to study tumour cells that are circulating in the blood. One might only collect 10 or 20 cells in a sample.</a>
+</div>
+</td>
+<td class="function active">
+<div>
+ exonic
+</div>
+</td>
+<td class="gene">
+<div>
+ A2ML1
+</div>
+</td>
+<td class="chromosome">
+<div>
+ 19
+</div>
+</td>
+<td class="endCoordinate">
+<div>
+ 9016573
+</div>
+</td>
+<td class="cytogeneticBand">
+<div>
+ 12p13.31
+</div>
+</td>
+<td class="startCoordinate">
+<div>
+ 9016573
+</div>
+</td>
+<td class="affectedAminoAcid">
+<div>
+ A2ML1:NM_001282424
+</div>
+</td>
+<td class="proteinChange">
+<div>
+ p.H1229R
+</div>
+</td>
+<td class="granthamScore">
+<div>
+ 29
+</div>
+</td>
+<td class="functionalConsequence">
+<div>
+ missense
+</div>
+</td>
+<td class="transcript">
+<div>
+ NM_144670.4
+</div>
+</td>
+<td class="nucleotideChange">
+<div>
+ c.3686A&gt;G
+</div>
+</td>
+<td class="_fid">
+<div>
+ 28
+</div>
+</td>
+<td class="_selected">
+<div>
+ false
+</div>
+</td>
+</tr>
+<tr id="29">
+<td class="btntd">
+<div>
+<label class="checkbox"><input type="checkbox"><i></i></label><span>2</span>
+</div>
+</td>
+<td class="btntd">
+<div>
+<button class="btn btn-link reset-padding" data-toggle="button"><i class="i-star"></i></button>
+</div>
+</td>
+<td class="comment">
+<div>
+<a href="#" class="btn-link-default comment-link" data-type="textarea" data-pk="1" data-placeholder="Your comments here..." data-placement="right">Navin's speciality is single-cell sequencing, which allows his lab to study tumour cells that are circulating in the blood. One might only collect 10 or 20 cells in a sample.</a>
+</div>
+</td>
+<td class="function active">
+<div>
+ exonic
+</div>
+</td>
+<td class="gene">
+<div>
+ A2ML1
+</div>
+</td>
+<td class="chromosome">
+<div>
+ 19
+</div>
+</td>
+<td class="endCoordinate">
+<div>
+ 9016573
+</div>
+</td>
+<td class="cytogeneticBand">
+<div>
+ 12p13.31
+</div>
+</td>
+<td class="startCoordinate">
+<div>
+ 9016573
+</div>
+</td>
+<td class="affectedAminoAcid">
+<div>
+ A2ML1:NM_001282424
+</div>
+</td>
+<td class="proteinChange">
+<div>
+ p.H1229R
+</div>
+</td>
+<td class="granthamScore">
+<div>
+ 29
+</div>
+</td>
+<td class="functionalConsequence">
+<div>
+ missense
+</div>
+</td>
+<td class="transcript">
+<div>
+ NM_144670.4
+</div>
+</td>
+<td class="nucleotideChange">
+<div>
+ c.3686A&gt;G
+</div>
+</td>
+<td class="_fid">
+<div>
+ 29
+</div>
+</td>
+<td class="_selected">
+<div>
+ false
+</div>
+</td>
+</tr>
+</tbody>
+               
+                </table>
+                </div>
+                
+          </div>  
+</div>
+
+
+<div id="fav-message" class="hidden">
+ You can export these items to file
+</div>
+</div>
+
+
+
+<div class="modal modal-second-layer fade" id="views" tabindex="-1" role="dialog" aria-labelledby="viewsLabel">
+	<div class="modal-backdrop fade in">
+	</div>
+	<div class="modal-dialog modal-lg" role="document">
+<div class="modal-content">
+			<div class="modal-header modal-header-with-nav ">
+				<div class="navbar navbar-inverse table-row">
+					<div class="max-width">
+						<h4 class="modal-title">Views</h4>
+					</div>
+					<div>
+						<button type="button" class="btn navbar-btn" data-dismiss="modal" aria-label="Close" style="padding: 11px 15px; "><span aria-hidden="true"><i class="md-i">close</i></span></button>
+					</div>
+				</div>
+			</div>
+		
+				<div class="modal-body">
+        <div class="split-layout">
+      <div class="split-left">
+      
+              
+      		 <div class="split-wrap">
+           <div class="navbar navbar-static-top"><div class="navbar-search">
+                <div class="navbar-search-field"><input type="text" style="" class="form-control material-input" value=""></div>
+              </div></div>
+              <div class="split-scroll">
+      			  <ul class="nav nav nav-tabs nav-stacked nav-componets nav-controls nav-radios">
+                           <li class="nav-header">Stardard views</li>
+        									 <li><a href="#viewDetails" type="button" data-toggle="tab"><label class="radio"><input type="radio" name="viewsRadios" value="1"><i></i></label><span class="link-label">Default view2</span><span class="link-desc">Text of description for view </span></a></li>
+        									
+                          <li>
+        
+        									  <a href="#viewDetails" type="button" data-toggle="tab"><label class="radio"><input type="radio" name="viewsRadios" value="2"><i></i></label><span class="link-label">Default view3</span><span class="link-desc">Text of description for view </span></a>
+        									</li>
+                          
+        		
+        		
+                          <li class="active">
+        
+        									  <a href="#viewDetails" type="button" data-toggle="tab"><label class="radio"><input type="radio" name="viewsRadios" value="3"><i></i></label><span class="link-label">Default view</span><span class="link-desc">Text of description for view </span></a>
+        									</li> 								
+                          <li>
+        
+        									  <a href="#viewDetails" type="button" data-toggle="tab"><label class="radio"><input type="radio" name="viewsRadios" value="4"><i></i></label><span class="link-label">Default view</span><span class="link-desc">Text of description for view </span></a>
+        								  </li>
+        									
+        									<li class="nav-header">Your views</li>
+        								  
+        								  <li>
+        
+        									  <a href="#viewDetails" type="button" data-toggle="tab"><label class="radio"><input type="radio" name="viewsRadios" value="5"><i></i></label><span class="link-label">User created view name</span><span class="link-desc">Text of description for view </span></a>
+        									</li>
+        									<li>
+        									  <a href="#viewDetails" type="button" data-toggle="tab"><label class="radio"><input type="radio" name="viewsRadios" value="6"><i></i></label><span class="link-label">Copy of Default view</span><span class="link-desc">Text of description for view </span></a>
+        									</li>
+        			
+                          <li>
+        
+        									  <a href="#viewDetails" type="button" data-toggle="tab"><label class="radio"><input type="radio" name="viewsRadios"><i></i></label><span class="link-label">Copy of view name</span><span class="link-desc">Text of description for view </span></a>
+        								</li>
+                       <li>
+        
+        									  <a href="#viewDetails" type="button" data-toggle="tab"><label class="radio"><input type="radio" name="viewsRadios"><i></i></label><span class="link-label">User created view name</span><span class="link-desc">Text of description for view </span></a>
+        									</li>
+        									<li>
+        									  <a href="#viewDetails" type="button" data-toggle="tab"><label class="radio"><input type="radio" name="viewsRadios"><i></i></label><span class="link-label">Copy of Default view</span><span class="link-desc">Text of description for view </span></a>
+        									</li>
+        			
+                          <li>
+        
+        									  <a href="#viewDetails" type="button" data-toggle="tab"><label class="radio"><input type="radio" name="viewsRadios"><i></i></label><span class="link-label">Copy of view name</span><span class="link-desc">Text of description for view </span></a>
+        								  </li> 
+        								   <li>
+        
+        									  <a href="#viewDetails" type="button" data-toggle="tab"><label class="radio"><input type="radio" name="viewsRadios"><i></i></label><span class="link-label">User created view name</span><span class="link-desc">Text of description for view </span></a>
+        									</li>
+        									<li>
+        									  <a href="#viewDetails" type="button" data-toggle="tab"><label class="radio"><input type="radio" name="viewsRadios"><i></i></label><span class="link-label">Copy of Default view</span><span class="link-desc">Text of description for view </span></a>
+        									</li>
+        			
+                          <li>
+        
+        									  <a href="#viewDetails" type="button" data-toggle="tab"><label class="radio"><input type="radio" name="viewsRadios"><i></i></label><span class="link-label">Copy of view name</span><span class="link-desc">Text of description for view </span></a>
+        								</li>
+        		
+      									</ul>
+      									
+      		             </div>
+              <div class="navbar navbar-static-bottom navbar-inverse ">
+           
+           <button class="btn btn-link-default navbar-btn"><i class="md-i">add</i></button>
+
+       
+
+           <div class="btn-group pull-right"><button type="button" class="btn btn-link-default navbar-btn"><span data-localize="">Apply</span></button></div>
+           <div class="navbar-text pull-right">Selected: 2</div>
+       </div>
+      		    </div>
+              
+      	     </div>
+             <div class="split-right tab-content">
+            <div class="split-wrap table-pane" id="viewDetails">
+               <div class="navbar navbar-fixed-top navbar-inverse visible-xs">
+           				<button class="btn navbar-btn pull-right"><i class="md-i">close</i></button>
+                   <h3 class="navbar-text">Default view</h3>
+						    </div>
+                <div class=" split-scroll">
+                  <h3 class="hidden-xs">Default view</h3>        
+                <p class="text-muted">Text of description for view</p>
+              	<div class="form-horizontal form-rows" id="copyviewLinks">
+              							
+              							<h5 style="" class="text-primary">Dispayed Columns</h5>
+              							
+              							<div class="row grid-toolbar">
+              								<div class="btn-group-left">
+              		            <button class="btn btn-link-light-default btnDrag" style="">
+              									<i class="md-i">more_vert</i><i class="md-i">more_vert</i>
+              									</button>
+              								</div>
+              								<div class="col-md-6">
+                              <label class="control-label"> Reverse Strand Read Depth</label>
+              	
+              								</div>
+              								<div class="col-md-6 material-input-group">
+              									<input type="text" class="form-control material-input" placeholder="Keywords (optional)">
+              									<label class="material-label">Keywords<label class="control-label">
+              								</div>
+              								<div class="btn-group-right">
+              									<button class="btn-link-default"><i class="md-i">close</i></button>
+              								</div>
+              							</div>
+              							<div class="row grid-toolbar">
+              								<div class="btn-group-left">
+              						<button class="btn btn-link-light-default btnDrag" style="">
+              									<i class="md-i">more_vert</i><i class="md-i">more_vert</i>
+              									</button>
+              								</div>
+              								<div class="col-md-6">
+                <label class="control-label">Subject ID</label>
+              								</div>
+              								<div class="col-md-6 material-input-group">
+              									<input type="text" class="form-control material-input" placeholder="Keywords (optional)">
+              									<label class="material-label">Keywords<label class="control-label">
+              								</div>
+              								<div class="btn-group-right">
+              									<button class="btn-link-default"><i class="md-i">close</i></button>
+              								</div>
+              							</div>
+              							<div class="row grid-toolbar">
+              								<div class="btn-group-left">
+              						   <button class="btn btn-link-light-default btnDrag" style="">
+              									<i class="md-i">more_vert</i><i class="md-i">more_vert</i>
+              									</button>
+              								</div>
+              								<div class="col-md-6">
+                <label class="control-label">		Reverse Strand Read Depth</label>
+              								</div>
+              								<div class="col-md-6 material-input-group">
+              									<input type="text" class="form-control material-input" placeholder="Keywords (optional)">
+              									<label class="material-label">Keywords<label class="control-label">
+              								</div>
+              								<div class="btn-group-right">
+              									<button class="btn-link-default"><i class="md-i">close</i></button>
+              								</div>
+              							</div>
+              							<div class="row grid-toolbar">
+              								<div class="btn-group-left">
+              										<button class="btn btn-link-light-default btnDrag" style="">
+              									<i class="md-i">more_vert</i><i class="md-i">more_vert</i>
+              									</button>
+              								</div>
+              								<div class="col-md-6">
+              								<label class="control-label">Allele Frequency</label></div>
+              								<div class="col-md-6 material-input-group">
+              									<input type="text" class="form-control material-input" placeholder="Keywords (optional)">
+              									<label class="material-label">Keywords<label class="control-label">
+              								</div>
+                              <div class="btn-group-right">
+              									<button class="btn-link-default"><i class="md-i">close</i></button>
+              								</div>
+              								
+              							</div>
+                            <div class="row grid-toolbar">
+              								
+              								<div class="col-md-6">
+              								<a class="btn btn-link-default" data-toggle="modal" data-target="#currentView"><i style="" class="md-i">add</i> Add columns</a></div>
+              							</div>
+                            <hr class="invisible">
+                            <h5 style="" class="text-primary">Sorting Columns</h5>
+                            <div class="row grid-toolbar">
+                            								<div class="btn-group-left">
+                                            <button class="btn btn-link-light-default btnDrag" style="">
+                            									<i class="md-i">more_vert</i><i class="md-i">more_vert</i>
+                            									</button>
+                            								</div>
+                            								<div class="col-md-6">
+                                            <label class="control-label">Reverse Strand Read Depth</label>
+                            			
+                            								</div>
+                            								<div class="col-md-6">
+                                            <select class="select2 material-select">
+                                            <option>Descending </option>
+                                            <option>Ascending </option>
+                                              </select>
+                            								</div>
+                            								<div class="btn-group-right">
+                            									<button class="btn-link-default"><i class="md-i">close</i></button>
+                            								</div>
+                            							</div>
+                             <div class="row grid-toolbar">
+              								<div class="col-md-6">
+              								<a class="btn btn-link-default" data-toggle="modal" data-target="#currentView"><i style="" class="md-i">add</i> Add columns</a></div>
+              							</div>
+              						</div>
+             
+              	</div>
+                <div class="navbar navbar-static-bottom navbar-inverse"><button class="btn btn-link-default navbar-btn"><i class="md-i">content_copy</i> </button>
+      					<div class="btn-group pull-right"><button class="btn btn-link-default navbar-btn" type="button"><span data-localize="">Cancel</span></button> <button class="btn btn-link-default navbar-btn" type="button"><span data-localize="">Save</span></button></div>
+      
+        </div>
+          
+          </div>
+      				</div>
+          </div>
+        </div>
+				
+	
+		</div>
+	</div>
+</div>
+<div class="modal modal-second-layer fade" id="filters" tabindex="-1" role="dialog" aria-labelledby="filtersLabel">
+	<div class="modal-backdrop fade in">
+	</div>
+	<div class="modal-dialog modal-dialog-primary modal-lg" role="document">
+		<div class="modal-content">
+			<div class="modal-header modal-header-with-nav">
+				<div class="navbar navbar-inverse table-row">
+					<div class="max-width">
+						<h4 class="modal-title">Filters</h4>
+					</div>
+					<div>
+						<button style="padding: 11px 15px; " aria-label="Close" data-dismiss="modal" class="btn navbar-btn" type="button"><span aria-hidden="true"><i class="md-i">close</i></span></button>
+					</div>
+				</div>
+			</div>
+			<div class="modal-body">
+				<div class="row grid-toolbar">
+					<label class="col-sm-2"></label>
+					<div class="col-sm-10">
+					</div>
+				</div>
+				<div class="tab-content form-horizontal">
+					<div class="tab-pane active" id="setupFilters">
+						<div class="collapse in copyfilter" id="newfilterField">
+							<div class="row grid-toolbar">
+								<div class="col-sm-6">
+									<label data-localize="filters.setup.selector.label">Available Filters </label>
+									<button type="button" class="btn btn-link" data-toggle="tooltip" data-placement="right" title="Standard filters can not be edited but can be copied to a new one. Disabled standard filters can not be copied but can be used for analysis"><i class="fa fa-info-circle text-muted"></i></button>
+								</div>
+							</div>
+							<div class="row grid-toolbar">
+								<div class="col-sm-6">
+									<select class="select2-search">
+										<option selected value="eye" title="standard">Eye Cancer Diagnostics</option>
+										<option value="cust1" title="standard">Breast cancer</option>
+										<option value="cust2" title="standard">Lung cancer</option>
+										<option value="cust3" disabled="">Autism</option>
+										<option value="cust4">Retinoblastoma</option>
+										<option value="cust5" disabled="" title="standard">Mental retardation</option>
+									</select>
+								</div>
+								<div class="col-sm-6">
+									<div class="btn-group" data-localize="actions.duplicate.help" data-toggle="tooltip" data-placement="bottom" data-container="body" title="Сopy this to a new">
+										<button class="btn btn-default" type="button" data-toggle="collapse" data-target=".copyfilter"><span data-localize="actions.duplicate.title">Duplicate</span></button>
+									</div>
+									<!--   Видимы когда в селекторе выбраны пользовательские фильтры, которые можно редактировать -->
+									<div class="btn-group">
+										<button class="btn btn-default hidden"><span data-localize="filters.setup.reset.title">Reset Filter</span></button>
+									</div>
+									<div class="btn-group hidden" data-toggle="tooltip" data-placement="bottom" data-container="body" title="Delete filter">
+										<button class="btn btn-link"><span data-localize="filters.setup.delete.title">Delete Filter</span></button>
+									</div>
+									<!-- / -->
+								</div>
+							</div>
+							<p>
+								<span class="text-muted">Filter for cancer diagnostics</span>
+							</p>
+						</div>
+						<div class="collapse copyfilter" id="copyfilterField">
+							<div class="row grid-toolbar">
+								<div class="col-sm-6">
+									<label data-localize="filters.setup.new.name.title">New Filter</label>
+									<input value="Copy of Eye Cancer Diagnostics" placeholder="Set filter name a copy" class="form-control text-primary" type="text">
+								</div>
+								<div class="col-sm-5">
+									<label data-localize="general.description">Description</label>
+									<input data-localize="filters.setup.new.name" value="" placeholder="Type filter description (optional)" class="form-control" type="text" data-localize="filters.new.description">
+								</div>
+								<div class="col-sm-1">
+									<button data-target=".copyfilter" data-toggle="collapse" type="button" class="btn btn-default collapsed btn-label-indent"><span data-localize="actions.cancel">Cancel</span></button>
+								</div>
+							</div>
+							<div class="help-text text-danger hidden">
+								<span data-localize="filters.setup.new.name.error">Name can not be empty</span>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-lg-12">
+								<div id="builder-basic" class="query-builder form-inline">
+									<dl id="builder-basic_group_0" class="rules-group-container">
+										<dt class="rules-group-header">
+										<div class="btn-group pull-right group-actions">
+											<button type="button" class="btn btn-xs btn-primary" data-add="rule"><i class="fa fa-plus"></i> Add rule </button><button type="button" class="btn btn-xs btn-primary" data-add="group"><i class="fa fa-plus"></i> Add group </button>
+										</div>
+										<div class="btn-group group-conditions">
+											<label class="btn btn-xs btn-default active"><input type="radio" name="builder-basic_group_0_cond" value="AND"> AND </label><label class="btn btn-xs btn-primary"><input type="radio" name="builder-basic_group_0_cond" value="OR"> OR </label>
+										</div>
+										<div class="error-container" data-toggle="tooltip">
+											<i class="fa fa-warning"></i>
+										</div>
+										</dt>
+										<dd class="rules-group-body">
+										<ul class="rules-list">
+											<li id="builder-basic_rule_0" class="rule-container">
+											<div class="rule-header">
+												<div class="btn-group pull-right rule-actions">
+													<button type="button" class="btn btn-xs btn-default" data-delete="rule"><i class="fa fa-remove"></i> Delete </button>
+												</div>
+											</div>
+											<div class="error-container">
+												<i class="fa fa-warning"></i>
+											</div>
+											<div class="rule-filter-container">
+												<select class="selectTree">
+													<optgroup label="General">
+													<option>View</option>
+													<option>Chromosome</option>
+													<option>Start</option>
+													<option>End</option>
+													<option>Type</option>
+													<option>Quality</option>
+													<option>Read Depth</option>
+													<option selected="">Zygosity</option>
+													<option>Enter Gene Name</option>
+													<option>Gene Panel</option>
+													</optgroup>
+													<optgroup label="Variant Consequence">
+													<option>Location</option>
+													<option>Effect on protein coding</option>
+													<option>Amino acid change</option>
+													<option>Full amino acid change</option>
+													</optgroup>
+													<optgroup label="Variant Frequency">
+													<option>Maximum Frequency Across Populations</option>
+													<option>1000G Worldwide Pop Frequency</option>
+													<option>1000G African Pop Frequency</option>
+													<option>1000G Asian Pop Frequency</option>
+													<option>ESP African Pop Frequency</option>
+													<option>ESP European Pop Frequency</option>
+													<option>ESP All Pop Frequency</option>
+													<option>Complete Genomics 46 Genomes</option>
+													<option>NCI 60 Cancer Exomes</option>
+													<option>Reported in dbSNP</option>
+													</optgroup>
+													<optgroup label="Variant Functional Score">
+													<option>SIFT</option>
+													<option>SIFT Prediction</option>
+													<option>PolyPhen 2</option>
+													<option>PolyPhen 2 Prediction</option>
+													<option>LRT</option>
+													<option>LRT Prediction</option>
+													<option>MutationTaster</option>
+													<option>MutationTaster Prediction</option>
+													<option>MutationAssessor</option>
+													<option>MutationAssessor Prediction</option>
+													<option>FATHMM</option>
+													<option>FATHMM Prediction</option>
+													<option>Tute Variant Score</option>
+													<option>Tute Prediction</option>
+													<option>GERP++</option>
+													<option>PhyloP</option>
+													<option>SiPhy</option>
+													</optgroup>
+													<optgroup label="Known Disease Association">
+													<option>ClinVar significance</option>
+													<option>ClinVar disease</option>
+													<option>ClinVar_ID</option>
+													<option>GWAS disease</option>
+													<option>GWAS odds ratio</option>
+													<option>GWAS beta value</option>
+													<option>GWAS pubmed</option>
+													<option>GWAS_SNP</option>
+													<option>Tute PGX</option>
+													<option>COSMIC_ID</option>
+													<option>COSMIC disease</option>
+													<option>Reported in Tute Dx</option>
+													<option>Tute Dx ACMG</option>
+													</optgroup>
+													<optgroup label="User-Created Analysis Information">
+													<option>Beta Phenotype Adjusted Score</option>
+													</optgroup>
+												</select>
+											</div>
+											<div class="rule-operator-container">
+												<select class="form-control select2" name="builder-basic_rule_0_operator">
+													<option value="equal">equal</option>
+													<option value="not_equal">not equal</option>
+													<option value="in">in</option>
+													<option value="not_in">not in</option>
+													<option value="less">less</option>
+													<option value="less_or_equal">less or equal</option>
+													<option value="greater">greater</option>
+													<option value="greater_or_equal">greater or equal</option>
+													<option value="between">between</option>
+													<option value="not_between">not between</option>
+													<option value="is_null">is null</option>
+													<option value="is_not_null">is not null</option>
+												</select>
+											</div>
+											<div class="rule-value-container">
+												<select class="select2 form-control">
+													<option>
+													Value1 </option>
+													<option>
+													Value2 </option>
+													<option>
+													Value3 </option>
+													<option>
+													Value4 </option>
+													<option>
+													Value5 </option>
+												</select>
+											</div>
+											</li>
+											<li id="builder-basic_rule_0" class="rule-container">
+											<div class="rule-header">
+												<div class="btn-group pull-right rule-actions">
+													<button type="button" class="btn btn-xs btn-default" data-delete="rule"><i class="fa fa-remove"></i> Delete </button>
+												</div>
+											</div>
+											<div class="error-container">
+												<i class="fa fa-warning"></i>
+											</div>
+											<div class="rule-filter-container">
+												<select class="selectTree">
+													<optgroup label="General">
+													<option>View</option>
+													<option selected="">Chromosome</option>
+													<option>Start</option>
+													<option>End</option>
+													<option>Type</option>
+													<option>Quality</option>
+													<option>Read Depth</option>
+													<option>Zygosity</option>
+													<option>Enter Gene Name</option>
+													<option>Gene Panel</option>
+													</optgroup>
+													<optgroup label="Variant Consequence">
+													<option>Location</option>
+													<option>Effect on protein coding</option>
+													<option>Amino acid change</option>
+													<option>Full amino acid change</option>
+													</optgroup>
+													<optgroup label="Variant Frequency">
+													<option>Maximum Frequency Across Populations</option>
+													<option>1000G Worldwide Pop Frequency</option>
+													<option>1000G African Pop Frequency</option>
+													<option>1000G Asian Pop Frequency</option>
+													<option>ESP African Pop Frequency</option>
+													<option>ESP European Pop Frequency</option>
+													<option>ESP All Pop Frequency</option>
+													<option>Complete Genomics 46 Genomes</option>
+													<option>NCI 60 Cancer Exomes</option>
+													<option>Reported in dbSNP</option>
+													</optgroup>
+													<optgroup label="Variant Functional Score">
+													<option>SIFT</option>
+													<option>SIFT Prediction</option>
+													<option>PolyPhen 2</option>
+													<option>PolyPhen 2 Prediction</option>
+													<option>LRT</option>
+													<option>LRT Prediction</option>
+													<option>MutationTaster</option>
+													<option>MutationTaster Prediction</option>
+													<option>MutationAssessor</option>
+													<option>MutationAssessor Prediction</option>
+													<option>FATHMM</option>
+													<option>FATHMM Prediction</option>
+													<option>Tute Variant Score</option>
+													<option>Tute Prediction</option>
+													<option>GERP++</option>
+													<option>PhyloP</option>
+													<option>SiPhy</option>
+													</optgroup>
+													<optgroup label="Known Disease Association">
+													<option>ClinVar significance</option>
+													<option>ClinVar disease</option>
+													<option>ClinVar_ID</option>
+													<option>GWAS disease</option>
+													<option>GWAS odds ratio</option>
+													<option>GWAS beta value</option>
+													<option>GWAS pubmed</option>
+													<option>GWAS_SNP</option>
+													<option>Tute PGX</option>
+													<option>COSMIC_ID</option>
+													<option>COSMIC disease</option>
+													<option>Reported in Tute Dx</option>
+													<option>Tute Dx ACMG</option>
+													</optgroup>
+													<optgroup label="User-Created Analysis Information">
+													<option>Beta Phenotype Adjusted Score</option>
+													</optgroup>
+												</select>
+											</div>
+											<div class="rule-operator-container">
+												<select class="form-control select2" name="builder-basic_rule_0_operator">
+													<option value="equal">equal</option>
+													<option value="not_equal">not equal</option>
+													<option value="in">in</option>
+													<option value="not_in">not in</option>
+													<option value="less">less</option>
+													<option value="less_or_equal">less or equal</option>
+													<option value="greater">greater</option>
+													<option value="greater_or_equal">greater or equal</option>
+													<option value="between" selected>between</option>
+													<option value="not_between">not between</option>
+													<option value="is_null">is null</option>
+													<option value="is_not_null">is not null</option>
+												</select>
+											</div>
+											<div class="rule-value-container">
+												<input class="form-control" type="number" name="builder-basic_rule_0_value_0" step="0.01" min="0">, <input class="form-control" type="number" name="builder-basic_rule_0_value_0" step="0.01" min="0">
+											</div>
+											</li>
+											<li id="builder-basic_rule_0" class="rule-container">
+											<div class="rule-header">
+												<div class="btn-group pull-right rule-actions">
+													<button type="button" class="btn btn-xs btn-default" data-delete="rule"><i class="fa fa-remove"></i> Delete </button>
+												</div>
+											</div>
+											<div class="error-container">
+												<i class="fa fa-warning"></i>
+											</div>
+											<div class="rule-filter-container">
+												<select class="selectTree">
+													<optgroup label="General">
+													<option>View</option>
+													<option>Chromosome</option>
+													<option>Start</option>
+													<option>End</option>
+													<option>Type</option>
+													<option>Quality</option>
+													<option>Read Depth</option>
+													<option>Zygosity</option>
+													<option>Enter Gene Name</option>
+													<option>Gene Panel</option>
+													</optgroup>
+													<optgroup label="Variant Consequence">
+													<option selected="">Location</option>
+													<option>Effect on protein coding</option>
+													<option>Amino acid change</option>
+													<option>Full amino acid change</option>
+													</optgroup>
+													<optgroup label="Variant Frequency">
+													<option>Maximum Frequency Across Populations</option>
+													<option>1000G Worldwide Pop Frequency</option>
+													<option>1000G African Pop Frequency</option>
+													<option>1000G Asian Pop Frequency</option>
+													<option>ESP African Pop Frequency</option>
+													<option>ESP European Pop Frequency</option>
+													<option>ESP All Pop Frequency</option>
+													<option>Complete Genomics 46 Genomes</option>
+													<option>NCI 60 Cancer Exomes</option>
+													<option>Reported in dbSNP</option>
+													</optgroup>
+													<optgroup label="Variant Functional Score">
+													<option>SIFT</option>
+													<option>SIFT Prediction</option>
+													<option>PolyPhen 2</option>
+													<option>PolyPhen 2 Prediction</option>
+													<option>LRT</option>
+													<option>LRT Prediction</option>
+													<option>MutationTaster</option>
+													<option>MutationTaster Prediction</option>
+													<option>MutationAssessor</option>
+													<option>MutationAssessor Prediction</option>
+													<option>FATHMM</option>
+													<option>FATHMM Prediction</option>
+													<option>Tute Variant Score</option>
+													<option>Tute Prediction</option>
+													<option>GERP++</option>
+													<option>PhyloP</option>
+													<option>SiPhy</option>
+													</optgroup>
+													<optgroup label="Known Disease Association">
+													<option>ClinVar significance</option>
+													<option>ClinVar disease</option>
+													<option>ClinVar_ID</option>
+													<option>GWAS disease</option>
+													<option>GWAS odds ratio</option>
+													<option>GWAS beta value</option>
+													<option>GWAS pubmed</option>
+													<option>GWAS_SNP</option>
+													<option>Tute PGX</option>
+													<option>COSMIC_ID</option>
+													<option>COSMIC disease</option>
+													<option>Reported in Tute Dx</option>
+													<option>Tute Dx ACMG</option>
+													</optgroup>
+													<optgroup label="User-Created Analysis Information">
+													<option>Beta Phenotype Adjusted Score</option>
+													</optgroup>
+												</select>
+											</div>
+											<div class="rule-operator-container">
+												<select class="form-control select2" name="builder-basic_rule_0_operator">
+													<option value="equal">equal</option>
+													<option value="not_equal" selected>not equal</option>
+													<option value="in">in</option>
+													<option value="not_in">not in</option>
+													<option value="less">less</option>
+													<option value="less_or_equal">less or equal</option>
+													<option value="greater">greater</option>
+													<option value="greater_or_equal">greater or equal</option>
+													<option value="between">between</option>
+													<option value="not_between">not between</option>
+													<option value="is_null">is null</option>
+													<option value="is_not_null">is not null</option>
+												</select>
+											</div>
+											<div class="rule-value-container">
+												<input class="form-control" type="number" name="builder-basic_rule_0_value_0" step="0.01" min="0">
+											</div>
+											</li>
+											<li id="builder-basic_rule_0" class="rule-container">
+											<div class="rule-header">
+												<div class="btn-group pull-right rule-actions">
+													<button type="button" class="btn btn-xs btn-default" data-delete="rule"><i class="fa fa-remove"></i> Delete </button>
+												</div>
+											</div>
+											<div class="error-container">
+												<i class="fa fa-warning"></i>
+											</div>
+											<div class="rule-filter-container">
+												<select class="selectTree">
+													<optgroup label="General">
+													<option>View</option>
+													<option>Chromosome</option>
+													<option>Start</option>
+													<option>End</option>
+													<option>Type</option>
+													<option>Quality</option>
+													<option>Read Depth</option>
+													<option>Zygosity</option>
+													<option>Enter Gene Name</option>
+													<option>Gene Panel</option>
+													</optgroup>
+													<optgroup label="Variant Consequence">
+													<option>Location</option>
+													<option>Effect on protein coding</option>
+													<option>Amino acid change</option>
+													<option>Full amino acid change</option>
+													</optgroup>
+													<optgroup label="Variant Frequency">
+													<option>Maximum Frequency Across Populations</option>
+													<option>1000G Worldwide Pop Frequency</option>
+													<option>1000G African Pop Frequency</option>
+													<option>1000G Asian Pop Frequency</option>
+													<option>ESP African Pop Frequency</option>
+													<option>ESP European Pop Frequency</option>
+													<option>ESP All Pop Frequency</option>
+													<option>Complete Genomics 46 Genomes</option>
+													<option>NCI 60 Cancer Exomes</option>
+													<option>Reported in dbSNP</option>
+													</optgroup>
+													<optgroup label="Variant Functional Score">
+													<option selected="">SIFT</option>
+													<option>SIFT Prediction</option>
+													<option>PolyPhen 2</option>
+													<option>PolyPhen 2 Prediction</option>
+													<option>LRT</option>
+													<option>LRT Prediction</option>
+													<option>MutationTaster</option>
+													<option>MutationTaster Prediction</option>
+													<option>MutationAssessor</option>
+													<option>MutationAssessor Prediction</option>
+													<option>FATHMM</option>
+													<option>FATHMM Prediction</option>
+													<option>Tute Variant Score</option>
+													<option>Tute Prediction</option>
+													<option>GERP++</option>
+													<option>PhyloP</option>
+													<option>SiPhy</option>
+													</optgroup>
+													<optgroup label="Known Disease Association">
+													<option>ClinVar significance</option>
+													<option>ClinVar disease</option>
+													<option>ClinVar_ID</option>
+													<option>GWAS disease</option>
+													<option>GWAS odds ratio</option>
+													<option>GWAS beta value</option>
+													<option>GWAS pubmed</option>
+													<option>GWAS_SNP</option>
+													<option>Tute PGX</option>
+													<option>COSMIC_ID</option>
+													<option>COSMIC disease</option>
+													<option>Reported in Tute Dx</option>
+													<option>Tute Dx ACMG</option>
+													</optgroup>
+													<optgroup label="User-Created Analysis Information">
+													<option>Beta Phenotype Adjusted Score</option>
+													</optgroup>
+												</select>
+											</div>
+											<div class="rule-operator-container">
+												<select class="form-control select2" name="builder-basic_rule_0_operator">
+													<option value="equal">equal</option>
+													<option value="not_equal">not equal</option>
+													<option value="in">in</option>
+													<option value="not_in">not in</option>
+													<option value="less">less</option>
+													<option value="less_or_equal">less or equal</option>
+													<option value="greater">greater</option>
+													<option value="greater_or_equal">greater or equal</option>
+													<option value="between" selected="">between</option>
+													<option value="not_between">not between</option>
+													<option value="is_null">is null</option>
+													<option value="is_not_null">is not null</option>
+												</select>
+											</div>
+											<div class="rule-value-container">
+												<select class="select2">
+													<option>1</option>
+													<option>2</option>
+													<option>3</option>
+													<option>4</option>
+												</select>
+												 ,
+												<select class="select2">
+													<option>1</option>
+													<option>2</option>
+													<option>3</option>
+													<option>4</option>
+												</select>
+											</div>
+											</li>
+										</ul>
+										</dd>
+									</dl>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="tab-pane" id="combineFilters">
+						<div class="row grid-toolbar">
+							<div class="col-sm-6">
+								<label data-localize="filters.combine.new.name.label">New Combined Filter</label>
+								<input data-localize="filters.combine.new.name" value="Eye Cancer Diagnostics + Breast Cancer" placeholder="Set filter name a copy" class="form-control text-primary" type="text">
+							</div>
+							<div class="col-sm-5">
+								<label data-localize="general.description">Description</label>
+								<input value="" data-localize="filters.combine.new.description" placeholder="Type filter description (optional)" class="form-control" type="text">
+							</div>
+							<div class="col-sm-1">
+								<button data-target=".copyfilter" data-toggle="collapse" type="button" class="btn btn-default collapsed btn-label-indent"><span data-localize="actions.cancel">Cancel</span></button>
+							</div>
+						</div>
+						<div class="help-text text-danger hidden">
+							<span data-localize="filters.combine.new.name.error">Name can not be empty</span>
+						</div>
+						<div class="row grid-toolbar">
+							<div class="col-sm-6">
+								<label data-localize="filters.combine.settings.title">Available Filters for combine</label>
+							</div>
+						</div>
+						<div class="row combine-options">
+							<div class="col-lg-12">
+								<div id="builder-basic-filters" class="query-builder builder-basic-filters form-inline">
+									<dl id="builder-basic_group_0" class="rules-group-container">
+										<dt class="rules-group-header">
+										<div class="btn-group pull-right group-actions">
+											<button type="button" class="btn btn-xs btn-primary" data-add="rule"><i class="fa fa-plus"></i> Add rule </button><button type="button" class="btn btn-xs btn-primary" data-add="group"><i class="fa fa-plus"></i> Add group </button>
+										</div>
+										<div class="btn-group group-conditions">
+											<label class="btn btn-xs btn-default active"><input type="radio" name="builder-basic_group_0_cond" value="AND"> AND </label><label class="btn btn-xs btn-primary"><input type="radio" name="builder-basic_group_0_cond" value="OR"> OR </label>
+										</div>
+										<div class="error-container" data-toggle="tooltip">
+											<i class="glyphicon glyphfa fa-warning-sign"></i>
+										</div>
+										</dt>
+										<dd class="rules-group-body">
+										<ul class="rules-list">
+											<li id="builder-basic_rule_0" class="rule-container">
+											<div class="rule-header">
+												<div class="btn-group pull-right rule-actions">
+													<button type="button" class="btn btn-xs btn-default" data-delete="rule"><i class="fa fa-remove"></i> Delete </button>
+												</div>
+											</div>
+											<div class="error-container">
+												<i class="glyphicon glyphfa fa-warning-sign"></i>
+											</div>
+											<div class="rule-filter-container hidden">
+												<select class="selectTree">
+													<option selected="">Filter</option>
+												</select>
+											</div>
+											<div class="rule-operator-container hidden">
+												<select class="form-control select2" name="builder-basic_rule_0_operator">
+													<option value="equal">equal</option>
+												</select>
+											</div>
+											<div class="rule-value-container">
+												<select class="select2-search">
+													<option selected value="eye">Eye Cancer Diagnostics</option>
+													<option value="cust1">Breast cancer</option>
+													<option value="cust2">Lung cancer</option>
+													<option value="cust3" disabled="">Autism</option>
+													<option value="cust4">Retinoblastoma</option>
+													<option value="cust5" disabled="">Mental retardation</option>
+												</select>
+											</div>
+											</li>
+											<li id="builder-basic_rule_0" class="rule-container">
+											<div class="rule-header">
+												<div class="btn-group pull-right rule-actions">
+													<button type="button" class="btn btn-xs btn-default" data-delete="rule"><i class="fa fa-remove"></i> Delete </button>
+												</div>
+											</div>
+											<div class="error-container">
+												<i class="glyphicon glyphfa fa-warning-sign"></i>
+											</div>
+											<div class="rule-filter-container hidden">
+												<select class="selectTree">
+													<option selected="">Filter</option>
+												</select>
+											</div>
+											<div class="rule-operator-container hidden">
+												<select class="form-control select2" name="builder-basic_rule_0_operator">
+													<option value="equal">equal</option>
+												</select>
+											</div>
+											<div class="rule-value-container">
+												<select class="select2-search">
+													<option value="eye">Eye Cancer Diagnostics</option>
+													<option selected value="cust1">Breast cancer</option>
+													<option value="cust2">Lung cancer</option>
+													<option value="cust3" disabled="">Autism</option>
+													<option value="cust4">Retinoblastoma</option>
+													<option value="cust5" disabled>Mental retardation</option>
+												</select>
+											</div>
+											</li>
+											<dl id="builder-basic_group_1" class="rules-group-container">
+												<dt class="rules-group-header">
+												<div class="btn-group pull-right group-actions">
+													<button type="button" class="btn btn-xs btn-primary" data-add="rule"><i class="fa fa-plus"></i> Add rule </button><button type="button" class="btn btn-xs btn-primary" data-add="group"><i class="fa fa-plus"></i> Add group </button><button type="button" class="btn btn-xs btn-default" data-delete="group"><i class="fa fa-remove"></i> Delete </button>
+												</div>
+												<div class="btn-group group-conditions">
+													<label class="btn btn-xs btn-default"><input type="radio" name="builder-basic_group_1_cond" value="AND"> AND </label><label class="btn btn-xs btn-primary active"><input type="radio" name="builder-basic_group_1_cond" value="OR"> OR </label>
+												</div>
+												<div class="error-container" data-toggle="tooltip">
+													<i class="glyphicon glyphfa fa-warning-sign"></i>
+												</div>
+												</dt>
+												<dd class="rules-group-body">
+												<ul class="rules-list">
+													<li id="builder-basic_rule_0" class="rule-container">
+													<div class="rule-header">
+														<div class="btn-group pull-right rule-actions">
+															<button type="button" class="btn btn-xs btn-default" data-delete="rule"><i class="fa fa-remove"></i> Delete </button>
+														</div>
+													</div>
+													<div class="error-container">
+														<i class="glyphicon glyphfa fa-warning-sign"></i>
+													</div>
+													<div class="rule-filter-container hidden">
+														<select class="selectTree">
+															<option selected="">Filter</option>
+														</select>
+													</div>
+													<div class="rule-operator-container hidden">
+														<select class="form-control select2" name="builder-basic_rule_0_operator">
+															<option value="equal">equal</option>
+														</select>
+													</div>
+													<div class="rule-value-container">
+														<select class="select2-search">
+															<option value="eye">Eye Cancer Diagnostics</option>
+															<option value="cust1">Breast cancer</option>
+															<option value="cust2">Lung cancer</option>
+															<option value="cust3" disabled="">Autism</option>
+															<option selected value="cust4">Retinoblastoma</option>
+															<option value="cust5" disabled>Mental retardation</option>
+														</select>
+													</div>
+													</li>
+												</ul>
+												</dd>
+											</dl>
+										</ul>
+										</dd>
+									</dl>
+								</div>
+							</div>
+						</div>
+						<div class="alert alert-danger hidden">
+							<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+							<span aria-hidden="true">×</span>
+							</button>
+							<span data-localize="filters.combine.settings.description">Add more than one filter to create a combined condition</span>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="modal-footer">
+				<div class="btn-group pull-left">
+					<button type="button" class="btn btn-default hidden" data-dismiss="modal"><span data-localize="filter.settings.reset.title">Reset Filter</span></button>
+				</div>
+				<button type="button" class="btn btn-default" data-dismiss="modal"><span data-localize="actions.cancel">Cancel</span></button>
+				<button type="button" class="btn btn-primary" data-dismiss="modal"><span data-localize="actions.save_select.title">Save and Select</span></button>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="modal fade" id="combinefilters" role="dialog" aria-labelledby="filterLabel">
+	<div class="modal-dialog modal-lg modal-dialog-primary" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close pull-right" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				<h4 class="modal-title" data-localize="filters.combine.title">Combine Filters</h4>
+			</div>
+			<div class="modal-body">
+				<div class="row grid-toolbar">
+					<div class="col-sm-6">
+						<label data-localize="filters.combine.new.name.label">New Combined Filter</label>
+						<input data-localize="filters.combine.new.name" value="Eye Cancer Diagnostics + Breast Cancer" placeholder="Set filter name a copy" class="form-control text-primary" type="text">
+					</div>
+					<div class="col-sm-5">
+						<label data-localize="general.description">Description</label>
+						<input value="" data-localize="filters.combine.new.description" placeholder="Type filter description (optional)" class="form-control" type="text">
+					</div>
+					<div class="col-sm-1">
+						<button data-target=".copyfilter" data-toggle="collapse" type="button" class="btn btn-default collapsed btn-label-indent"><span data-localize="actions.cancel">Cancel</span></button>
+					</div>
+				</div>
+				<div class="help-text text-danger hidden">
+					<span data-localize="filters.combine.new.name.error">Name can not be empty</span>
+				</div>
+				<div class="row grid-toolbar">
+					<div class="col-sm-6">
+						<label data-localize="filters.combine.settings.title">Available Filters for combine</label>
+					</div>
+				</div>
+				<div class="row combine-options">
+					<div class="col-lg-12">
+						<div id="builder-basic-filters" class="query-builder builder-basic-filters form-inline">
+							<dl id="builder-basic_group_0" class="rules-group-container">
+								<dt class="rules-group-header">
+								<div class="btn-group pull-right group-actions">
+									<button type="button" class="btn btn-xs btn-primary" data-add="rule"><i class="fa fa-plus-circle"></i> Add rule </button><button type="button" class="btn btn-xs btn-primary" data-add="group"><i class="fa fa-plus-circle"></i> Add group </button>
+								</div>
+								<div class="btn-group group-conditions">
+									<label class="btn btn-xs btn-default active"><input type="radio" name="builder-basic_group_0_cond" value="AND"> AND </label><label class="btn btn-xs btn-primary"><input type="radio" name="builder-basic_group_0_cond" value="OR"> OR </label>
+								</div>
+								<div class="error-container" data-toggle="tooltip">
+									<i class="glyphicon glyphfa fa-warning-sign"></i>
+								</div>
+								</dt>
+								<dd class="rules-group-body">
+								<ul class="rules-list">
+									<li id="builder-basic_rule_0" class="rule-container">
+									<div class="rule-header">
+										<div class="btn-group pull-right rule-actions">
+											<button type="button" class="btn btn-xs btn-default" data-delete="rule"><i class="fa fa-remove"></i> Delete </button>
+										</div>
+									</div>
+									<div class="error-container">
+										<i class="glyphicon glyphfa fa-warning-sign"></i>
+									</div>
+									<div class="rule-filter-container hidden">
+										<select class="selectTree">
+											<option selected="">Filter</option>
+										</select>
+									</div>
+									<div class="rule-operator-container hidden">
+										<select class="form-control select2" name="builder-basic_rule_0_operator">
+											<option value="equal">equal</option>
+										</select>
+									</div>
+									<div class="rule-value-container">
+										<select class="select2-search">
+											<option selected value="eye">Eye Cancer Diagnostics</option>
+											<option value="cust1">Breast cancer</option>
+											<option value="cust2">Lung cancer</option>
+											<option value="cust3" disabled="">Autism</option>
+											<option value="cust4">Retinoblastoma</option>
+											<option value="cust5" disabled="">Mental retardation</option>
+										</select>
+									</div>
+									</li>
+									<li id="builder-basic_rule_0" class="rule-container">
+									<div class="rule-header">
+										<div class="btn-group pull-right rule-actions">
+											<button type="button" class="btn btn-xs btn-default" data-delete="rule"><i class="fa fa-remove"></i> Delete </button>
+										</div>
+									</div>
+									<div class="error-container">
+										<i class="glyphicon glyphfa fa-warning-sign"></i>
+									</div>
+									<div class="rule-filter-container hidden">
+										<select class="selectTree">
+											<option selected="">Filter</option>
+										</select>
+									</div>
+									<div class="rule-operator-container hidden">
+										<select class="form-control select2" name="builder-basic_rule_0_operator">
+											<option value="equal">equal</option>
+										</select>
+									</div>
+									<div class="rule-value-container">
+										<select class="select2-search">
+											<option value="eye">Eye Cancer Diagnostics</option>
+											<option selected value="cust1">Breast cancer</option>
+											<option value="cust2">Lung cancer</option>
+											<option value="cust3" disabled="">Autism</option>
+											<option value="cust4">Retinoblastoma</option>
+											<option value="cust5" disabled>Mental retardation</option>
+										</select>
+									</div>
+									</li>
+									<dl id="builder-basic_group_1" class="rules-group-container">
+										<dt class="rules-group-header">
+										<div class="btn-group pull-right group-actions">
+											<button type="button" class="btn btn-xs btn-primary" data-add="rule"><i class="fa fa-plus-circle"></i> Add rule </button><button type="button" class="btn btn-xs btn-primary" data-add="group"><i class="fa fa-plus-circle"></i> Add group </button><button type="button" class="btn btn-xs btn-default" data-delete="group"><i class="fa fa-remove"></i> Delete </button>
+										</div>
+										<div class="btn-group group-conditions">
+											<label class="btn btn-xs btn-default"><input type="radio" name="builder-basic_group_1_cond" value="AND"> AND </label><label class="btn btn-xs btn-primary active"><input type="radio" name="builder-basic_group_1_cond" value="OR"> OR </label>
+										</div>
+										<div class="error-container" data-toggle="tooltip">
+											<i class="glyphicon glyphfa fa-warning-sign"></i>
+										</div>
+										</dt>
+										<dd class="rules-group-body">
+										<ul class="rules-list">
+											<li id="builder-basic_rule_0" class="rule-container">
+											<div class="rule-header">
+												<div class="btn-group pull-right rule-actions">
+													<button type="button" class="btn btn-xs btn-default" data-delete="rule"><i class="fa fa-remove"></i> Delete </button>
+												</div>
+											</div>
+											<div class="error-container">
+												<i class="glyphicon glyphfa fa-warning-sign"></i>
+											</div>
+											<div class="rule-filter-container hidden">
+												<select class="selectTree">
+													<option selected="">Filter</option>
+												</select>
+											</div>
+											<div class="rule-operator-container hidden">
+												<select class="form-control select2" name="builder-basic_rule_0_operator">
+													<option value="equal">equal</option>
+												</select>
+											</div>
+											<div class="rule-value-container">
+												<select class="select2-search">
+													<option value="eye">Eye Cancer Diagnostics</option>
+													<option value="cust1">Breast cancer</option>
+													<option value="cust2">Lung cancer</option>
+													<option value="cust3" disabled="">Autism</option>
+													<option selected value="cust4">Retinoblastoma</option>
+													<option value="cust5" disabled>Mental retardation</option>
+												</select>
+											</div>
+											</li>
+										</ul>
+										</dd>
+									</dl>
+								</ul>
+								</dd>
+							</dl>
+						</div>
+					</div>
+				</div>
+				<div class="alert alert-danger hidden">
+					<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+					<span aria-hidden="true">×</span>
+					</button>
+					<span data-localize="filters.combine.settings.description">Add more than one filter to create a combined condition</span>
+				</div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal"><span data-localize="actions.cancel">Cancel</span></button>
+				<button type="button" class="btn btn-primary" data-dismiss="modal"><span data-localize="filters.combine.combine.title">Combine and select</span></button>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="modal fade" id="upload" tabindex="-1" role="dialog" aria-labelledby="uploadLabel">
+	<div class="modal-dialog modal-lg" role="document">
+		<div class="modal-content">
+			<div class="modal-header modal-header-with-nav">
+				<div class="navbar navbar-inverse table-row">
+					<div>
+						<h4 class="modal-title">Samples</h4>
+					</div>
+					<div class="navbar-search max-width" style="">
+						<div class="input-group navbar-search-field">
+							<input type="text" placeholder="" class="form-control placeholder-inverse" id="hshortcuts">
+						</div>
+					</div>
+					<div>
+						<button style="padding: 11px 15px; " aria-label="Close" data-dismiss="modal" class="btn navbar-btn" type="button"><span aria-hidden="true"><i class="md-i">close</i></span></button>
+					</div>
+				</div>
+			</div>
+			<div class="modal-body">
+				<div class="alert alert-danger hidden hidden">
+					<p>
+						<strong data-localize="general.error">Error!</strong><span data-localize="samples.upload.error.wrongformat">You trying to load zip file format.</span>
+					</p>
+				</div>
+				<div class="alert alert-danger hidden hidden">
+					<p>
+						<strong data-localize="general.error">Error!</strong>
+						<span data-localize="samples.upload.error.unreadable">The file is damaged or unreadable</span>
+					</p>
+				</div>
+				<div class="alert alert-warning hidden">
+					<p>
+						<strong data-localize="general.warning">Warning!</strong>
+						<span data-localize="samples.upload.warning.notcomplete">The file not uploaded successfully but metadata is not complete. Fill required fields necessary for analysis</span>
+					</p>
+				</div>
+				<div class="alert alert-success hidden">
+					<p>
+						<strong data-localize="general.success">Success!</strong>
+						<span data-localize="samples.upload.success.loaded">The file is not loaded, the metadata correctly filled. You can choose it for analysis</span>
+					</p>
+				</div>
+		<div class="panel-group card-list">
+  		   <h4 class="group-heading">Today</h4>
+  				<div class="flex-grid">
+    			<div class="col-xs-12 col-md-6 col-lg-4">
+					 <div id="dropArea" class="panel panel-primary">
+					
+							
+								<button class="btn-link-light-default btn-select-file" data-toggle="modal" data-target="#fileOpen">
+								<i class="md-i">cloud_upload</i>
+								<span>Drop some files</span>
+								<small>Or click here</small>
+   								 <span>.vcf, .vcf.gz</span>					
+                </button>
+								
+						
+					
+					</div>
+    			</div>
+    				
+  		
+    			<div class="col-xs-12 col-md-6 col-lg-4">
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<div class="btn-group pull-right">
+								 <span class="text-muted">13:45</span>
+							
+				
+  							
+							</div>
+						
+								<h3 class="panel-title">TSVC_variants_IonXpress_001_variants_IonXpress_001_variants_IonXpress_001</h3>
+											<p class="text-muted">Text of description for sample</p>
+						
+								
+							
+						</div>
+						<div class="panel-body ">
+						
+									<dl class="dl-horizontal">
+										<dt>Reference</dt>
+										<dd>h19</dd>
+										
+									</dl>
+									<dl class="dl-horizontal">
+										<dt>
+										Phenotype</dt>
+										<dd>
+										21-hydroxylase deficiency </dd>
+										
+									</dl>
+									<dl class="dl-horizontal">
+										<dt>
+										Sample Type</dt><dd>
+										<span>Tumor</span>
+										</dd>
+										
+										
+									</dl>
+									
+								
+									<dl class="dl-horizontal">
+										<dt>
+										Filters</dt>
+										<dd>
+										Eye Cancer Diagnostics</dd>
+										
+									</dl>
+									<dl class="dl-horizontal">
+										<dt>
+										View</dt>
+										<dd>Default View</dd>
+										
+									</dl>
+									<dl class="dl-horizontal">
+										<dt>Mutations</dt>
+										<dd>6789 genomic /676 exonic/3 mandatory</dd>
+									</dl>
+									
+								
+						</div>
+						<div class="panel-footer ">
+     <button class="btn-link-default btn-toggle pull-right"><i class="md-i">keyboard_arrow_up</i></button>      
+							<button title="More options" class="btn btn-uppercase btn-link btn-edit" data-toggle="button">Edit</button>
+			       <button class="btn btn-uppercase btn-link" data-dismiss="modal">Analyze</button>	
+	</div>
+					</div>
+					</div>
+						
+    			<div class="col-xs-12 col-md-6 col-lg-4">
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<div class="btn-group pull-right">
+								 <span class="text-muted">13:45</span>
+							
+				
+  							
+							</div>
+						
+								<h3 class="panel-title">TSVC_variants_IonXpress_00</h3>
+											<p class="text-muted">Text of description for sample</p>
+						
+								
+							
+						</div>
+						<div class="panel-body">
+							
+									<dl class="dl-horizontal">
+										<dt>Reference</dt>
+										<dd>h19</dd>
+										
+									</dl>
+									<dl class="dl-horizontal">
+										<dt>
+										Phenotype</dt>
+										<dd>
+										21-hydroxylase deficiency </dd>
+										
+									</dl>
+									<dl class="dl-horizontal">
+										<dt>
+										Sample Type</dt>
+										<dd>
+										<span>Tumor</span>
+										</dd>
+										
+									</dl>
+									
+								
+									<dl class="dl-horizontal">
+										<dt>
+										Filters</dt>
+										<dd>
+										Eye Cancer Diagnostics</dd>
+										
+									</dl>
+									<dl class="dl-horizontal">
+										<dt>
+										View</dt>
+										<dd>Default View</dd>
+										
+									</dl>
+									<dl class="dl-horizontal">
+										<dt>Mutations</dt>
+										<dd>6789 genomic /676 exonic/3 mandatory</dd>
+									</dl>
+									
+								
+						</div>
+              <div class="panel-footer ">
+     <button class="btn-link-default btn-toggle pull-right"><i class="md-i">keyboard_arrow_up</i></button>      
+							<button data-toggle="button" class="btn btn-uppercase btn-link btn-edit active" title="More options" aria-pressed="true">Edit</button>
+			       <button data-dismiss="modal" class="btn btn-uppercase btn-link">Analyze</button>	
+	</div>
+
+					</div>
+					</div>
+    				<div class="col-xs-12 col-md-6 col-lg-4">
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<div class="btn-group pull-right">
+								 <span class="text-muted">13:45</span>
+							
+				
+  							
+							</div>
+						
+								<h3 class="panel-title">TSVC_variants_IonXpress_00</h3>
+											<p class="text-muted">Text of description for sample</p>
+						
+								
+							
+						</div>
+						<div class="panel-body">
+							
+									<dl class="dl-horizontal">
+										<dt>Reference</dt>
+										<dd>h19</dd>
+										
+									</dl>
+									<dl class="dl-horizontal">
+										<dt>
+										Phenotype</dt>
+										<dd>
+										21-hydroxylase deficiency </dd>
+										
+									</dl>
+									<dl class="dl-horizontal">
+										<dt>
+										Sample Type</dt>
+										<dd>
+										<span>Tumor</span>
+										</dd>
+										
+									</dl>
+									
+								
+									<dl class="dl-horizontal">
+										<dt>
+										Filters</dt>
+										<dd>
+										Eye Cancer Diagnostics</dd>
+										
+									</dl>
+									<dl class="dl-horizontal">
+										<dt>
+										View</dt>
+										<dd>Default View</dd>
+										
+									</dl>
+									<dl class="dl-horizontal">
+										<dt>Mutations</dt>
+										<dd>6789 genomic /676 exonic/3 mandatory</dd>
+									</dl>
+									
+								
+						</div>
+              <div class="panel-footer ">
+     <button class="btn-link-default btn-toggle pull-right"><i class="md-i">keyboard_arrow_up</i></button>      
+							<button data-toggle="button" class="btn btn-uppercase btn-link btn-edit active" title="More options" aria-pressed="true">Edit</button>
+			       <button data-dismiss="modal" class="btn btn-uppercase btn-link">Analyze</button>	
+	</div>
+
+					</div>
+					</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="modal fade" id="analysis" aria-hidden="true" aria-labelledby="analysisLabel" role="dialog">
+	<div class="modal-dialog modal-lg modal-dialog-primary" role="document">
+		<div class="modal-content">
+			<div class="modal-header modal-header-with-nav">
+				<div class="navbar navbar-inverse table-row">
+					<div>
+						<h4 class="modal-title">Analysis</h4>
+					</div>
+					<div class="navbar-search table-cell100" style="">
+						<div class="input-group navbar-search-field">
+							<input type="text" placeholder="" class="form-control placeholder-inverse" id="hshortcuts">
+						</div>
+					</div>
+					<div>
+						<button data-target="#history" data-toggle="modal" class="btn navbar-btn">History</button>
+					</div>
+					<div>
+						<button aria-label="Close" data-dismiss="modal" class="btn navbar-btn" type="button"><span aria-hidden="true"><i class="md-i">close</i></span></button>
+					</div>
+				</div>
+			</div>
+			<div class="modal-body">
+			     <div class="form-horizontal">
+			
+					<div class="row">
+  					<div class="col-md-9 col-sm-offset-2">
+  					<ul role="tablist" class="nav nav-pills nav-btn-group">
+								<li class="single-tab active" role="presentation"><a aria-expanded="false" data-toggle="tab" role="tab" aria-controls="single" href="#single">Single</a></li>
+								<li class="tumor-normal-tab" role="presentation"><a aria-expanded="false" data-toggle="tab" role="tab" aria-controls="tumorNormal" href="#tumorNormal">Tumor/Normal</a></li>
+								<li class="family-tab " role="presentation"><a data-toggle="tab" role="tab" aria-controls="family" href="#family" aria-expanded="true">Family</a></li>
+							</ul>
+  </div>
+            </div>
+      
+							
+          <div class="tab-content">
+								<div id="single" class="tab-pane active" role="tabpanel">
+								  <div class="well"><div class="row grid-toolbar">
+                   <label class="col-lg-2  control-label group-label">Sample</label>
+                   <div class="col-lg-8">
+										<div class="form-rows form-rows-in-grid">
+                    <div class="row grid-toolbar">
+  										
+                    <div class="btn-group-left"><button class="btn-link-default btn-uppercase"><i class="md-i">info_outline</i></button></div>											  <div class="col-sm-10 col-xs-12 hidden-xs">
+												<select class="select2 select2-btn-primary">
+													<option value="lungs">TSVC_variants_IonXpress_001.vcf.gz </option>
+													<option value="hepar">TSVC_variants_IonXpress_003.vcf.gz</option>
+													<option title="collected">Some mutation founded from some samples</option>
+													<option value="intestines">Some syndrome (from intestines) </option>
+													<option value="intestinesC">Some syndrome (Control from intestines) </option>
+													<option value="lungsC">Some syndrome (Control from lungs) </option>
+													<option value="heparC">Some syndrome (Control from hepar) </option>
+												</select>
+											</div>
+											  <div class="col-sm-9 col-xs-12 visible-xs">
+												<a class="btn btn-link text-left" href="" type="button" data-keyboard="false" data-toggle="modal" data-target="#selectSample">TSVC_variants_IonXpress_001.vcf.gz</a>
+											</div>
+										
+												
+                        </div>
+                        </div>
+						
+									</div>
+								</div>	</div>
+								</div>			
+								<div id="tumorNormal" class="tab-pane" role="tabpanel">
+                    <div class="well">
+                      <div class="row grid-toolbar">
+                        <label class="col-lg-2  control-label group-label">Samples</label>
+                          <div class="col-lg-8">
+    					              <div class="form-rows form-rows-in-grid">
+														
+										<div class="row grid-toolbar">
+  										
+                    <div class="btn-group-left"><button class="btn-link-default btn-uppercase"><i class="md-i">info_outline</i></button></div>			
+                    <div class="col-md-10 hidden-xs">
+												<select class="select2 select2-btn-primary">
+													<option value="lungs">TSVC_variants_IonXpress_001.vcf.gz </option>
+													<option value="hepar">TSVC_variants_IonXpress_003.vcf.gz</option>
+													<option title="collected">Some mutation founded from some samples</option>
+													<option value="intestines">Some syndrome (from intestines) </option>
+													<option value="intestinesC">Some syndrome (Control from intestines) </option>
+													<option value="lungsC">Some syndrome (Control from lungs) </option>
+													<option value="heparC">Some syndrome (Control from hepar) </option>
+												</select>
+											</div>
+											  <div class="col-xs-10 visible-xs">
+												<a data-target="#selectSample" data-toggle="modal" data-keyboard="false" type="button" href="" class="btn btn-link text-left">TSVC_variants_IonXpress_001.vcf.gz</a>
+											</div>
+											  <div class="col-xs-4 col-md-2 btn-group-select2">
+													<select aria-hidden="true" tabindex="-1" class="select2">
+														<option></option>
+														<option selected="">Tumor</option>
+														<option>Normal</option>
+														
+													</select>
+												</div>
+												<div class="btn-group-right">
+                          <button class="btn-link-default"><i class="md-i">close</i></button><button class="btn-link-default"><i class="md-i">add</i></button>
+
+
+                        </div>
+                        </div>
+                    <div class="row grid-toolbar">
+  										
+<div class="btn-group-left"><button class="btn-link-default btn-uppercase"><i class="md-i">info_outline</i></button></div>			
+<div class="col-md-10 hidden-xs">
+												<select class="select2 select2-btn-default">
+													<option value="lungs">TSVC_variants_IonXpress_001.vcf.gz </option>
+													<option value="hepar">TSVC_variants_IonXpress_003.vcf.gz</option>
+													<option title="collected">Some mutation founded from some samples</option>
+													<option value="intestines">Some syndrome (from intestines) </option>
+													<option value="intestinesC">Some syndrome (Control from intestines) </option>
+													<option value="lungsC">Some syndrome (Control from lungs) </option>
+													<option value="heparC">Some syndrome (Control from hepar) </option>
+												</select>
+											</div>
+											  <div class="col-xs-10 visible-xs">
+												<a class="btn btn-link text-left" href="" type="button" data-keyboard="false" data-toggle="modal" data-target="#selectSample">TSVC_variants_IonXpress_001.vcf.gz</a>
+											</div>
+											  <div class="col-xs-4 col-md-2 btn-group-select2">
+													<select class="select2">
+														<option></option>
+														<option selected="">Tumor</option>
+														<option>Normal</option>
+														
+													</select>
+												</div>
+												<div class="btn-group-right">
+                          <button class="btn-link-default"><i class="md-i">close</i></button><button class="btn-link-default"><i class="md-i">add</i></button>
+
+
+                        </div>
+                        </div>
+									
+									</div>
+									
+						
+								           </div>
+                  </div>
+                    </div>
+                  </div>
+								<div id="family" class="tab-pane " role="tabpanel">
+                      <div class="well"><div class="row grid-toolbar">
+                <label  class="col-lg-2 control-label group-label">Samples</label>
+                  <div class="col-lg-8">
+                    <div class="form-rows form-rows-in-grid">
+								  	  <div class="collapse fam1 in">
+										<div class="row grid-toolbar">
+                       <div class="btn-group-left">
+                    <button class="btn-link-default btn-uppercase"><i class="md-i">info_outline</i></button></div>	
+                       <div class="col-md-10 hidden-xs">
+												<select class="select2 select2-btn-primary">
+													<option value="lungs">TSVC_variants_IonXpress_001.vcf.gz </option>
+													<option value="hepar">TSVC_variants_IonXpress_003.vcf.gz</option>
+													<option title="collected">Some mutation founded from some samples</option>
+													<option value="intestines">Some syndrome (from intestines) </option>
+													<option value="intestinesC">Some syndrome (Control from intestines) </option>
+													<option value="lungsC">Some syndrome (Control from lungs) </option>
+													<option value="heparC">Some syndrome (Control from hepar) </option>
+												</select>
+											</div>
+											  <div class="col-xs-10 visible-xs">
+												<a class="btn btn-link text-left" href="" type="button" data-keyboard="false" data-toggle="modal" data-target="#selectSample">TSVC_variants_IonXpress_001.vcf.gz</a>
+											</div>
+											  <div class="col-xs-4 col-md-2 btn-group-select2">
+												
+													<select aria-hidden="true" tabindex="-1" class="select2">
+														<option></option>
+														<option selected="">Proband</option>
+														<option>Mother</option>
+														<option>Father</option>
+											
+													</select>
+												
+												</div>
+												<div class="btn-group-right">
+                          <button class="btn-link-default"><i class="md-i">close</i></button><button class="btn-link-default"><i class="md-i">add</i></button>
+
+
+                        </div>
+                        </div>
+
+									</div>
+                      <div class="collapse fam2 in">
+										<div class="row grid-toolbar">
+  										
+                      <div class="btn-group-left"><button class="btn-link-default btn-uppercase"><i class="md-i">info_outline</i></button></div>											  <div class="col-md-10 hidden-xs">
+												<select class="select2 select2-btn-default">
+													<option value="lungs">TSVC_variants_IonXpress_001.vcf.gz </option>
+													<option value="hepar" selected>TSVC_variants_IonXpress_003.vcf.gz</option>
+													<option title="collected">Some mutation founded from some samples</option>
+													<option value="intestines">Some syndrome (from intestines) </option>
+													<option value="intestinesC">Some syndrome (Control from intestines) </option>
+													<option value="lungsC">Some syndrome (Control from lungs) </option>
+													<option value="heparC">Some syndrome (Control from hepar) </option>
+												</select>
+											</div>
+											  <div class="col-xs-10 visible-xs">
+												<a data-target="#selectSample" data-toggle="modal" data-keyboard="false" type="button" href="" class="btn btn-link text-left">TSVC_variants_IonXpress_001.vcf.gz</a>
+											</div>
+											  <div class="col-xs-4 col-md-2 btn-group-select2">
+												
+													<select class="select2">
+														<option></option>
+														<option selected="">Proband</option>
+														<option>Mother</option>
+														<option>Father</option>
+														
+													</select>
+												
+												</div>
+												<div class="btn-group-right">
+                          <button class="btn-link-default"><i class="md-i">close</i></button><button class="btn-link-default"><i class="md-i">add</i></button>
+
+
+                        </div>
+                        </div>
+									</div>
+                      <div class="collapse fam3 in">
+												<div class="row grid-toolbar">
+  										
+<div class="btn-group-left"><button class="btn-link-default btn-uppercase"><i class="md-i">info_outline</i></button></div>											  <div class="col-md-10 hidden-xs">
+												<select class="select2 select2-btn-default">
+													<option value="lungs">TSVC_variants_IonXpress_001.vcf.gz </option>
+													<option value="hepar" selected>TSVC_variants_IonXpress_003.vcf.gz</option>
+													<option title="collected">Some mutation founded from some samples</option>
+													<option value="intestines">Some syndrome (from intestines) </option>
+													<option value="intestinesC">Some syndrome (Control from intestines) </option>
+													<option value="lungsC">Some syndrome (Control from lungs) </option>
+													<option value="heparC">Some syndrome (Control from hepar) </option>
+												</select>
+											</div>
+											  <div class="col-xs-10 visible-xs">
+												<a data-target="#selectSample" data-toggle="modal" data-keyboard="false" type="button" href="" class="btn btn-link text-left">TSVC_variants_IonXpress_001.vcf.gz</a>
+											</div>
+											  <div class="col-xs-4 col-md-2 btn-group-select2">
+												
+													<select class="select2">
+														<option></option>
+														<option>Proband</option>
+														<option>Mother</option>
+														<option selected>Father</option>
+														
+													</select>
+												
+												</div>
+												<div class="btn-group-right">
+                          <button class="btn-link-default"><i class="md-i">close</i></button><button class="btn-link-default"><i class="md-i">add</i></button>
+
+
+                        </div>
+                        </div>
+									</div>
+                      <div class="collapse fam4">
+												<div class="row grid-toolbar">
+  										
+<div class="btn-group-left"><button class="btn-link-default btn-uppercase"><i class="md-i">info_outline</i></button></div>											  <div class="col-md-10 hidden-xs">
+												<select class="select2 select2-btn-default">
+													<option value="lungs">TSVC_variants_IonXpress_001.vcf.gz </option>
+													<option value="hepar" selected>TSVC_variants_IonXpress_003.vcf.gz</option>
+													<option title="collected">Some mutation founded from some samples</option>
+													<option value="intestines">Some syndrome (from intestines) </option>
+													<option value="intestinesC">Some syndrome (Control from intestines) </option>
+													<option value="lungsC">Some syndrome (Control from lungs) </option>
+													<option value="heparC">Some syndrome (Control from hepar) </option>
+												</select>
+											</div>
+											  <div class="col-xs-10 visible-xs">
+												<a data-target="#selectSample" data-toggle="modal" data-keyboard="false" type="button" href="" class="btn btn-link text-left">TSVC_variants_IonXpress_001.vcf.gz</a>
+											</div>
+											  <div class="col-xs-4 col-md-2 btn-group-select2">
+												
+													<select class="select2">
+														<option selected=""></option>
+														<option>Proband</option>
+														<option>Mother</option>
+														<option>Father</option>
+														
+													</select>
+												
+												</div>
+												<div class="btn-group-right">
+                          <button class="btn-link-default"><i class="md-i">close</i></button><button class="btn-link-default"><i class="md-i">add</i></button>
+
+
+                        </div>
+                        </div>
+									</div>
+																		
+								</div>
+                    </div>
+                    </div></div>
+                      <div class="row grid-toolbar">
+							
+                  <label class="col-xs-12 col-sm-2 control-label">Model</label>
+                  <div class="col-xs-7 col-sm-3">
+								<select aria-hidden="true" style="" tabindex="-1" class="select2 hidden">
+									<option>Reccessive</option>
+									<option>Dominant</option>
+									<option>X-linked</option>
+								</select>
+							</div>
+                </div>
+					           <div class="row grid-toolbar">
+										<label class="col-xs-12 col-sm-2 control-label">Phenotype</label>
+										<div class="col-sm-6">
+											<a data-target="#selectPhenotype" data-keyboard="false" data-toggle="modal" class="btn btn-block btn-link text-left">21-hydroxylase deficiency</a>
+										</div>
+									</div>
+							</div>
+              </div>
+					
+					
+             
+					 <hr class="invisible">
+					        <div class="row grid-toolbar">
+										<label class="col-xs-12 col-sm-2 control-label">Filters</label>
+										<div class="col-md-6 col-xs-12">
+  										
+											<select aria-hidden="true" tabindex="-1" class="select2-multiple" multiple="" id="filterSelect">
+												<option selected="" value="eye" title="standard">Eye Cancer Diagnostics</option>
+												<option value="cust1" title="standard">Breast cancer</option>
+												<option value="cust2" title="standard">Lung cancer</option>
+												<option value="cust3">Autism</option>
+												<option value="cust4">Retinoblastoma</option>
+												<option value="cust5" title="standard">Mental retardation</option>
+											</select>
+										</div>
+										<div class="col-md-2 col-xs-4">
+  										<button class="btn btn-link-primary " type="button" data-toggle="modal" data-target="#filters"><span data-localize="filters.setup.title">Setup Filters</span></button>
+  										
+										</div>
+									</div>
+                  <div class="row grid-toolbar">
+                    <label class="col-xs-12 col-sm-2 control-label">View</label>
+									<div class="col-sm-6 col-xs-12">
+									<select class="select2-search">
+										<option selected="" title="standard" value="1">Default View</option>
+										<option value="2">Copy of Default View</option>
+										<option value="3">User Custom View 1</option>
+										<option value="4">User Custom View 2</option>
+										<option value="5">User Custom View 3</option>
+									</select>
+								</div>
+								<div class="col-sm-2 col-xs-4">
+  								<button data-target="#views" data-toggle="modal" type="button" class="btn btn-link-primary "><span data-localize="views.title">Setup view</span></button>
+								</div>
+						
+							</div>
+                  <div class="row grid-toolbar">
+						<label class="col-xs-12 col-sm-2 control-label">Analisys Name</label>
+						<div class="col-sm-9">
+							<input type="text" readonly="" class="form-control" value="23.02.2016_12:35_TSVC_variants_IonXpress_001.vcf.gz" placeholder="Analysis name">
+						</div>
+					</div>
+                  <div class="row grid-toolbar">
+						<label class="col-xs-12 col-sm-2 control-label">Comment</label>
+						<div class="col-md-6">
+							<textarea class="form-control" placeholder="Analysis description (optional)" value=""></textarea>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="modal-footer">
+				<button data-dismiss="modal" class="btn btn-default" type="button"><span data-localize="actions.cancel">Cancel</span></button>
+				<button data-dismiss="modal" class="btn btn-primary" type="button"><span>Analyze</span></button>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="modal modal-second-layer fade" id="history" tabindex="-1" role="dialog" aria-labelledby="historyLabel">
+	<div class="modal-backdrop fade in">
+	</div>
+	<div class="modal-dialog modal-lg modal-dialog-primary" role="document">
+		<div class="modal-content">
+			<div class="modal-header modal-header-with-nav ui-draggable-handle">
+				<div class="navbar navbar-inverse table-row">
+					<div>
+						<h4 class="modal-title">History</h4>
+					</div>
+					<div style="" class="navbar-search max-width">
+						<div class="input-group navbar-search-field">
+							<input type="text" id="hshortcuts" class="form-control placeholder-inverse" placeholder="">
+						</div>
+					</div>
+					<div>
+						<button type="button" class="btn navbar-btn" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"><i class="md-i">close</i></span></button>
+					</div>
+				</div>
+			</div>
+			<div class="modal-body table-content">
+				<div class="table-wrapper table-files-wrapper">
+					<div class="table-container table-grid-container">
+						<table class="table table-condensed ">
+						<thead>
+						<tr>
+							<th data-localize="general.datetime">
+								 Datetime
+							</th>
+							<th>
+								 Sample
+							</th>
+							<th>
+								 Filters
+							</th>
+							<th>
+								 View
+							</th>
+							<th>
+							</th>
+						</tr>
+						</thead>
+						<tbody>
+						<!-- Empty results -->
+						<tr class="hidden">
+							<td colspan="7">
+								<div class="empty empty-files">
+									<h3><span class="fa-stack fa-lg">
+									<i class="fa fa-circle fa-stack-2x"></i>
+									<i class="fa fa-flag fa-stack-1x fa-inverse"></i>
+									</span><span data-localize="files.empty.title">You have not saved even a single file</span><span data-localize="files.empty.description">Select several mutations in the table with the results of the analysis, and click Export in the top menu</span></h3>
+								</div>
+							</td>
+						</tr>
+						<!-- Results -->
+						<tr>
+							<td>
+								 2.11.2015 02:34:21
+							</td>
+							<td>
+								 TSVC_variants_IonXpress_001
+							</td>
+							<td>
+								 Eye Cancer Diagnostics
+							</td>
+							<td>
+								 Default View
+							</td>
+							<td>
+								<button class="btn btn-uppercase btn-link">Renew</button>
+								</button>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								 2.11.2015 02:34:21
+							</td>
+							<td>
+								 TSVC_variants_IonXpress_001
+							</td>
+							<td>
+								 Eye Cancer Diagnostics
+							</td>
+							<td>
+								 Default View
+							</td>
+							<td>
+								<button class="btn btn-uppercase btn-link">Renew</button>
+								</button>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								 2.11.2015 02:34:21
+							</td>
+							<td>
+								 TSVC_variants_IonXpress_001
+							</td>
+							<td>
+								 Eye Cancer Diagnostics
+							</td>
+							<td>
+								 Default View
+							</td>
+							<td>
+								<button class="btn btn-uppercase btn-link">Renew</button>
+								</button>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								 2.11.2015 02:34:21
+							</td>
+							<td>
+								 TSVC_variants_IonXpress_001
+							</td>
+							<td>
+								 Eye Cancer Diagnostics
+							</td>
+							<td>
+								 Default View
+							</td>
+							<td>
+								<button class="btn btn-uppercase btn-link">Renew</button>
+								</button>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								 2.11.2015 02:34:21
+							</td>
+							<td>
+								 TSVC_variants_IonXpress_001
+							</td>
+							<td>
+								 Eye Cancer Diagnostics
+							</td>
+							<td>
+								 Default View
+							</td>
+							<td>
+								<button class="btn btn-uppercase btn-link">Renew</button>
+								</button>
+							</td>
+						</tr>
+						</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="modal fade" id="exporthistory" tabindex="-1" role="dialog" aria-labelledby="exportLabel">
+	<div class="modal-dialog modal-lg" role="document">
+		<div class="modal-content">
+			<div class="modal-header modal-header-with-nav">
+				<div class="navbar navbar-inverse table-row">
+					<div>
+						<h4 class="modal-title">Saved files</h4>
+					</div>
+					<div class="navbar-search max-width" style="">
+						<div class="input-group navbar-search-field">
+							<input type="text" placeholder="" class="form-control placeholder-inverse" id="hshortcuts">
+						</div>
+					</div>
+					<div>
+						<button style="padding: 11px 15px; " aria-label="Close" data-dismiss="modal" class="btn navbar-btn" type="button"><span aria-hidden="true"><i class="md-i">close</i></span></button>
+					</div>
+				</div>
+			</div>
+			<div class="modal-body table-content">
+				<table class="table table-condensed table-vertical-top table-history">
+				<thead>
+				<tr>
+					<th data-localize="general.samples">
+						 Filename
+					</th>
+					<th data-localize="general.datetime">
+						 Datetime
+					</th>
+					<th data-localize="general.filters">
+						 Analysis settings
+					</th>
+					<th data-localize="general.view">
+						 Comment
+					</th>
+				</tr>
+				</thead>
+				<tbody>
+				<!-- Empty results -->
+				<tr class="hidden">
+					<td colspan="7">
+						<div class="empty empty-files">
+							<h3><span class="fa-stack fa-lg">
+							<i class="fa fa-circle fa-stack-2x"></i>
+							<i class="fa fa-flag fa-stack-1x fa-inverse"></i>
+							</span><span data-localize="files.empty.title">You have not saved even a single file</span><span data-localize="files.empty.description">Select several mutations in the table with the results of the analysis, and click Export in the top menu</span></h3>
+						</div>
+					</td>
+				</tr>
+				<!-- Results -->
+				<tr>
+					<td>
+						<a><i class="fa fa-file-excel-o"></i> [Sample_name]_Some_Mutations_21.12.2015_23:45:56.xls</a>
+					</td>
+					<td>
+						 2.11.2015 02:34:21
+					</td>
+					<td>
+						<dl class="">
+							<dt>Sample</dt>
+							<dd>TSVC_variants_IonXpress_001 </dd>
+						</dl>
+						<dl class="">
+							<dt>Filters</dt>
+							<dd>Eye Cancer Diagnostics </dd>
+						</dl>
+						<dl class="">
+							<dt>View</dt>
+							<dd>Default View </dd>
+						</dl>
+					</td>
+					<td class="comment">
+						<div class="expand-comment">
+							<a href="">Add comment</a>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<a><i class="fa fa-file-excel-o"></i> [Sample_name]_Some_Mutations_21.12.2015_23:45:56.xls</a>
+					</td>
+					<td>
+						 2.11.2015 02:34:21
+					</td>
+					<td>
+						<dl class="">
+							<dt>Sample</dt>
+							<dd>TSVC_variants_IonXpress_001 </dd>
+						</dl>
+						<dl class="">
+							<dt>Filters</dt>
+							<dd>Eye Cancer Diagnostics </dd>
+						</dl>
+						<dl class="">
+							<dt>View</dt>
+							<dd>Default View </dd>
+						</dl>
+					</td>
+					<td class="comment">
+						<div class="expand-comment">
+							<a href="">Add comment</a>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<a><i class="fa fa-file-excel-o"></i> [Sample_name]_Some_Mutations_21.12.2015_23:45:56.xls</a>
+					</td>
+					<td>
+						 2.11.2015 02:34:21
+					</td>
+					<td>
+						<dl class="">
+							<dt>Sample</dt>
+							<dd>TSVC_variants_IonXpress_001 </dd>
+						</dl>
+						<dl class="">
+							<dt>Filters</dt>
+							<dd>Eye Cancer Diagnostics </dd>
+						</dl>
+						<dl class="">
+							<dt>View</dt>
+							<dd>Default View </dd>
+						</dl>
+					</td>
+					<td class="comment">
+						<div class="expand-comment">
+							<a href="">Add comment</a>
+						</div>
+					</td>
+				</tr>
+				</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="modal fade" id="buy" tabindex="-1" role="dialog" aria-labelledby="buylabel">
+	<div class="modal-dialog modal-dialog-primary" role="document">
+		<div class="modal-content">
+			<div class="modal-header modal-header-with-nav ui-draggable-handle">
+				<div class="navbar navbar-inverse table-row">
+					<div>
+						<h4 class="modal-title">Buy</h4>
+					</div>
+					<div style="" class="navbar-search max-width">
+						<div class="input-group navbar-search-field">
+							<input type="text" id="hshortcuts" class="form-control placeholder-inverse" placeholder="">
+						</div>
+					</div>
+					<div>
+						<button type="button" class="btn navbar-btn" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"><i class="md-i">close</i></span></button>
+					</div>
+				</div>
+			</div>
+			<div class="modal-body table-content">
+				<div class="list-group-header">
+					<h3 class="" data-localize="general.welcome">Welcome.</h3>
+					<p class="text-warning" data-localize="buy.warning.nopaid_analyzes">
+						 You have not paid analyzes
+					</p>
+					<p>
+						<span data-localize="buy.select_office"> Select the office closest to you and ask for the purchase of paid features AGx</span>
+					</p>
+				</div>
+				<div class="list-group">
+					<a href="#" class="list-group-item">
+					<h4 class="list-group-item-heading">Company heading</h4>
+					<dl class="dl-horizontal">
+						<dt>address</dt>
+						<dd>
+						<ul class="list-group-item-text">
+							<li>Office address line 1,</li>
+							<li> Office address line 1,</li>
+							<li>Office address line 1,</li>
+						</ul>
+						</dd>
+					</dl>
+					<dl class="dl-horizontal">
+						<dt>Phone</dt>
+						<dd>+890 678 343789</dd>
+					</dl>
+					</a>
+					<a href="#" class="list-group-item">
+					<h4 class="list-group-item-heading">Company heading</h4>
+					<dl class="dl-horizontal">
+						<dt>address</dt>
+						<dd>
+						<ul class="list-group-item-text">
+							<li>Office address line 1,</li>
+							<li> Office address line 1,</li>
+							<li>Office address line 1,</li>
+						</ul>
+						</dd>
+					</dl>
+					<dl class="dl-horizontal">
+						<dt>Phone</dt>
+						<dd>+890 678 343789</dd>
+					</dl>
+					</a>
+					<a href="#" class="list-group-item">
+					<h4 class="list-group-item-heading">Company heading</h4>
+					<dl class="dl-horizontal">
+						<dt>address</dt>
+						<dd>
+						<ul class="list-group-item-text">
+							<li>Office adres line 1,</li>
+							<li> Office adres line 1,</li>
+							<li>Office address line 1,</li>
+						</ul>
+						</dd>
+					</dl>
+					<dl class="dl-horizontal">
+						<dt>Phone</dt>
+						<dd>+890 678 343789</dd>
+					</dl>
+					</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="modal fade" id="info" tabindex="-1" role="dialog" aria-labelledby="infoLabel">
+	<div class="modal-dialog modal-lg" role="document">
+		<div class="modal-content">
+			<div class="modal-header modal-header-with-nav">
+				<div class="navbar navbar-inverse table-row">
+					<div>
+						<h4 class="modal-title" style="font-size:22px;line-height:24px">AGx</h4>
+					</div>
+					<div class="navbar-search table-cell100" style="">
+						<div class="input-group navbar-search-field">
+							<input type="text" placeholder="" class="form-control placeholder-inverse" id="hshortcuts">
+						</div>
+					</div>
+					<div>
+						<ul class="nav nav-tabs nav-tabs-primary" role="tablist">
+							<li role="presentation"><a href="#about" aria-controls="about" role="tab" data-toggle="tab" class="about-tab"><span data-localize="brand.about.heading">About</span></a></li>
+							<li role="presentation"><a href="#help" aria-controls="faq" role="tab" data-toggle="tab" class="help-tab"><span>Help</span></a></li>
+							<!--
+-->
+						</ul>
+					</div>
+					<div>
+						<button type="button" class="btn navbar-btn" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"><i class="md-i">close</i></span></button>
+					</div>
+				</div>
+			</div>
+			<div class="modal-body min-heigh600 bg-white">
+				<div class="tab-content padding-default">
+					<div role="tabpanel" class="tab-pane active" id="about">
+						<div class="row">
+							<div class="col-sm-4">
+								<ul class="nav nav-tabs nav-stacked" role="tablist">
+									<li role="presentation"><a href="#info" aria-controls="info" role="tab" data-toggle="tab" class="active info-tab"><span>Info</span></a></li>
+									<li role="presentation"><a href="#terms" aria-controls="terms" role="tab" data-toggle="tab" class="terms-tab"><span data-localize="brand.terms.heading">Terms</span></a></li>
+									<li role="presentation"><a href="#privacy" aria-controls="privacy" role="tab" data-toggle="tab" class="privacy-tab"><span data-localize="brand.privacy.heading">Privacy</span></a></li>
+								</ul>
+							</div>
+							<div class="col-sm-8">
+								<div class="tab-content">
+									<div role="tabpanel" class="tab-pane active" id="info">
+										<h3 data-localize="brand.about.heading">Info</h3>
+										<div class="modal-lg-scroll" class="mCustomScrollbar" data-mcs-theme="dark">
+											<div data-localize="brand.faq.description">
+												 Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+											</div>
+										</div>
+									</div>
+									<div role="tabpanel" class="tab-pane" id="terms">
+										<h3 data-localize="brand.privacy.terms">Terms</h3>
+										<div class="modal-lg-scroll">
+											<div data-localize="brand.terms.description">
+												 Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+											</div>
+										</div>
+									</div>
+									<div role="tabpanel" class="tab-pane" id="privacy">
+										<h3 data-localize="brand.privacy.heading">Privacy</h3>
+										<div class="modal-lg-scroll">
+											<div data-localize="brand.terms.description">
+												 Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div role="tabpanel" class="tab-pane" id="help">
+						<div class="row">
+							<div class="col-sm-4">
+								<ul class="nav">
+									<li><a href="">What is it?</a>
+									<ul>
+										<li><a href="">How register?</a></li <li>
+										<a href="">How find..?</a></li>
+									</ul>
+									</li>
+									<li><a href="">How use this?</a>
+									<ul>
+										<li><a href="">How upload sample?</a></li>
+										<li><a href="">How delete sample?</a></li>
+									</ul>
+									</li>
+								</ul>
+							</div>
+							<div class="col-sm-8">
+								<h3>Help</h3>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="modal fade" id="filename" tabindex="-1" role="dialog" aria-labelledby="filenameLabel">
+<div class="modal-dialog modal-dialog-primary" role="document">
+	<div class="modal-content">
+		<div class="modal-header modal-header-with-nav">
+			<div class="navbar navbar-inverse table-row">
+				<div class="max-width">
+					<h4 class="modal-title" id="filenameLabel" data-localize="files.export.settings.heading">Export selected variants in file</h4>
+				</div>
+				<div>
+					<button style="padding: 11px 15px; " aria-label="Close" data-dismiss="modal" class="btn navbar-btn" type="button"><span aria-hidden="true"><i class="md-i">close</i></span></button>
+				</div>
+			</div>
+		</div>
+		<div class="modal-body">
+			<form class="form-horizontal">
+				<div class="form-group">
+					<label style="text-align: left" data-localize="files.export.settings.format.label" class="col-xs-12 col-sm-2 control-label">Format</label>
+					<div class="col-sm-4 col-xs-12">
+						<select name="filename[filetype]" class="select2 form-control">
+							<option selected="">
+							EXCEL </option>
+							<option>
+							CSV </option>
+							<option>
+							SQL </option>
+							<option>
+							JSON </option>
+							<option>
+							XML </option>
+						</select>
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="col-xs-12">
+						<input type="text" name="filename[name]" class="form-control material-input" value="[Sample name]'s Selected Mutations 21.12.2015 23:45:56" placeholder="Set file name (required)">
+						<label class="material-label">File name</label>
+						<div data-localize="files.export.settings.filename.error" class="help-text text-danger hidden hidden">
+							 Name can not be empty
+						</div>
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="col-xs-12">
+						<input placeholder="" data-localize="general.description" class="form-control material-input">
+						<label class="material-label">Description</label>
+					</div>
+				</div>
+				<div class="alert alert-warning hidden">
+					<p>
+						<strong data-localize="general.warning">Warning!</strong><span data-localize="files.export.settings.warning.limit">Only the first 100 search results will be exported</span>
+					</p>
+				</div>
+			</form>
+		</div>
+		<div class="modal-footer">
+			<button class="btn btn-uppercase btn-link" data-toggle="button">CANCEL</button><button class="btn btn-uppercase btn-link" data-toggle="button">SAVE</button>
+		</div>
+	</div>
+</div>
+</div>
+<div class="modal fade" id="confirm" tabindex="-1" role="dialog" aria-labelledby="buylabel">
+<div role="document" class="modal-dialog">
+	<div class="modal-content">
+		<div class="modal-header">
+			<h4 id="loginLabel" class="modal-title"><span>Confirm order</span></h4>
+		</div>
+		<div class="modal-body ">
+			<p>
+				 You have been <strong>113 credits</strong> for analyze
+			</p>
+			<p>
+				 Will you order analyze [Sample Name]?
+			</p>
+		</div>
+		<div class="modal-footer">
+			<button class="btn btn-default">Cancel</button>
+			<button class="btn btn-success">Order</button>
+		</div>
+	</div>
+</div>
+</div>
+<div class="modal fade" id="selectSample" tabindex="-1" role="dialog" aria-labelledby="buylabel">
+<div role="document" class="modal-dialog">
+	<div class="modal-content">
+		<div class="modal-header">
+			<button aria-label="Close" data-dismiss="modal" class="close" type="button"><span aria-hidden="true">×</span></button>
+			<h4 class="modal-title"><span>Select sample</span></h4>
+		</div>
+		<div class="modal-body">
+			<div class="form-group has-feedback">
+				<input type="text" class="form-control"><span class="form-control-feedback"><i class="fa fa-lg fa-search text-muted"></i></span>
+			</div>
+			<div class="table-list-xs" data-toggle="buttons">
+				<dl class="btn">
+					<input type="radio" name="samplesName">
+					<dt>
+					<label>Name</label>
+					<span><strong>TSVC_variants_IonXpress_001.vcf.gz</strong></span>
+					<label>Type</label>
+					<span>Tumor</span>
+					<label>Gender</label>
+					<span>Male</span>
+					<label>Genome Build</label>
+					<span>
+					h19 </span>
+					</dt>
+					<dd>
+					<label>Phenotype</label>
+					<span>21-hydroxylase deficiency</span>
+					</dd>
+				</dl>
+				<dl class="btn">
+					<input type="radio" name="samplesName">
+					<dt>
+					<label>Name</label>
+					<span><strong>TSVC_variants_IonXpress_001.vcf.gz</strong></span>
+					<label>Type</label>
+					<span>Tumor</span>
+					<label>Gender</label>
+					<span>Male</span>
+					<label>Genome Build</label>
+					<span>
+					h19 </span>
+					</dt>
+					<dd>
+					<label>Phenotype</label>
+					<span>21-hydroxylase deficiency</span>
+					</dd>
+				</dl>
+				<dl class="btn">
+					<input type="radio" name="samplesName">
+					<dt>
+					<label>Name</label>
+					<span><strong>TSVC_variants_IonXpress_001.vcf.gz</strong></span>
+					<label>Type</label>
+					<span>Tumor</span>
+					<label>Gender</label>
+					<span>Male</span>
+					<label>Genome Build</label>
+					<span>
+					h19 </span>
+					</dt>
+					<dd>
+					<label>Phenotype</label>
+					<span>21-hydroxylase deficiency</span>
+					</dd>
+				</dl>
+				<dl class="btn">
+					<input type="radio" name="samplesName">
+					<dt>
+					<label>Name</label>
+					<span><strong>TSVC_variants_IonXpress_001.vcf.gz</strong></span>
+					<label>Type</label>
+					<span>Tumor</span>
+					<label>Gender</label>
+					<span>Male</span>
+					<label>Genome Build</label>
+					<span>
+					h19 </span>
+					</dt>
+					<dd>
+					<label>Phenotype</label>
+					<span>21-hydroxylase deficiency</span>
+					</dd>
+				</dl>
+				<dl class="btn">
+					<input type="radio" name="samplesName">
+					<dt>
+					<label>Name</label>
+					<span><strong>TSVC_variants_IonXpress_001.vcf.gz</strong></span>
+					<label>Type</label>
+					<span>Tumor</span>
+					<label>Gender</label>
+					<span>Male</span>
+					<label>Genome Build</label>
+					<span>
+					h19 </span>
+					</dt>
+					<dd>
+					<label>Phenotype</label>
+					<span>21-hydroxylase deficiency</span>
+					</dd>
+				</dl>
+			</div>
+		</div>
+	</div>
+</div>
+</div>
+<div class="modal modal-second-layer fade" id="selectPhenotype" tabindex="-1" role="dialog" aria-labelledby="buylabel">
+<div class="modal-backdrop fade in">
+</div>
+<div role="document" class="modal-dialog modal-dialog-primary modal-lg">
+<div class="modal-content">
+	<div class="modal-header modal-header-with-nav ui-draggable-handle">
+		<div class="navbar navbar-inverse table-row">
+			<div class="max-width">
+				<h4 class="modal-title">Select phenotype</h4>
+			</div>
+			<div>
+				<button type="button" class="btn navbar-btn" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"><i class="md-i">close</i></span></button>
+			</div>
+		</div>
+	</div>
+	<div class="modal-body padding0">
+		<div class="navbar navbar-default table-row">
+			<div style="" class="navbar-search table-cell100">
+				<div class="input-group navbar-search-field">
+					<div class="input-group-btn dropdown">
+						<button class="btn placeholder" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						<span class="label label-default">HP:3000033 &ndash; Abnormality of nasopharyngeal <i class="fa fa-times-circle"></i></span><span class="label label-inverse hidden">skin <i class="fa fa-times"></i></span>
+						</button>
+					</div>
+					<input type="text" id="symptomes" class="form-control" placeholder="Select or type any names of symptomes or phenotypes" value="adenoid">
+					<ul style="right: 0px;" class="nav dropdown-menu dropdown-menu-context">
+						<li class=""><a><strong>ade</strong>noid </a></li>
+						<li><a>Abnormality of nasopharyngeal <strong>adenoid</strong></a></li>
+						<li><a>tonsils, lymphatic, <strong>ade</strong>noid</a></li>
+						<li><a><strong>ade</strong>noid, gland</a></li>
+						<li><a>lymphatic, <strong>ade</strong>noid</a></li>
+						<li><a>inflammation of the pharynx lymph nodes simultaneously with <strong>ade</strong>noids</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<ul class="list-group list-group-results" style="margin:0">
+			<li class="list-group-item"><a href="#" title="Abnormality of nasopharyngeal tonsil, Abnormality of adenoids, Abnormality of pharyngeal tonsil"><b>HP:3000033</b> &ndash; Abnormality of nasopharyngeal <span class="text-info">adenoid</span>s</a> in <a class="text-muted" href="#"><small>Parents</small></a>
+			<p style="font-size:13px">
+				 The <span class="text-info">adenoid</span>, a mass of lymphatic tissue situated posterior to the nasal cavity, in the roof of the nasopharynx, where the nose blends into the throat.
+			</p>
+			</li>
+			<li class="list-group-item"><a href="#"><b>HP:0030419</b> &ndash; Bartholin gland carcinoma </a> in <a href="#" class="text-muted"><small>Parents</small></a>
+			<p style="font-size:13px">
+				 A cancer arising in a cell of the Bartholin <span class="text-warning">gland</span>, a racemose <span class="text-warning">gland</span> located slightly posterior to the opening of the vagina; Carcinomas of Bartholin's <span class="text-warning">gland</span> are rare tumors that account for less than 1% of all gynecological malignancies. Two major histological types, squamous cell carcinoma and adenocarcinoma, account for 80% to 90% of primary cases. The remainder are <span class="text-info">adenoid</span>-cystic, transitional, or undifferentiated carcinomas.
+			</p>
+			<p style="font-size:13px">
+				<a href="" title="Carcinomas of Bartholin's gland are rare tumors that account for less than 1% of all gynecological malignancies. Two major histological types, squamous cell carcinoma and adenocarcinoma, account for 80% to 90% of primary cases. The remainder are adenoid-cystic, transitional, or undifferentiated carcinomas.">Other Definition</a>
+			</p>
+			</li>
+			<li class="list-group-item"><a href="#" title="Arnold Chiari type I malformation|Chiari I malformation"><b>HP:0007099</b> &ndash; Arnold-Chiari type I malformation</a> in <a href="#" class="text-muted"><small>Parents</small></a>
+			<p style="font-size:13px">
+				 Arnold-Chiari type I malformation refers to a relatively mild degree of herniation of the posteroinferior region of the cerebellum (the cerebellar <span class="text-warning">tonsils</span>) into the cervical canal with little or no displacement of the fourth ventricle.
+			</p>
+			</li>
+			<li class="list-group-item"><a title="" href="#"><b>HP:0011110</b> &ndash; Tonsillitis</a> in <a class="text-muted" href="#"><small>Parents</small></a>
+			<p style="font-size:13px">
+				 An inflammation of the <span class="text-warning">tonsils</span>.
+			</p>
+			</li>
+			<li class="list-group-item"><a href="#" title="Head and neck cancer"><b>HP:0012288</b> &ndash; Neoplasm of head and neck</a> in <a class="text-muted" href="#"><small>Parents</small></a>
+			<p style="font-size:13px">
+				 A tumor (abnormal growth of tissue) of the head and neck region with origin in the lip, oral cavity, nasal cavity, paranasal sinuses, <span class="text-warning">pharynx</span>, or larynx.
+			</p>
+			</li>
+			<li class="list-group-item disabled ">Probable categories</li>
+			<li class="list-group-item"><a href="" class="">Abnormality of the tonsils</a></li>
+			<li class="list-group-item"><a href="">Vulvar neoplasm</a></li>
+			<li class="list-group-item"><a href="">Arnold-Chiari malformation</a></li>
+		</ul>
+	</div>
+</div>
+</div>
+</div>
+
+<div class="modal fade" id="selectFilter" tabindex="-1" role="dialog" aria-labelledby="buylabel">
+<div role="document" class="modal-dialog">
+<div class="modal-content">
+	<div class="modal-header">
+		<button aria-label="Close" data-dismiss="modal" class="close" type="button"><span aria-hidden="true">×</span></button>
+		<h4 class="modal-title"><span>Select filters</span></h4>
+	</div>
+	<div class="modal-body">
+		<div class="form-group has-feedback">
+			<input type="text" class="form-control" placeholder="Type phenotype name, code or symptoms" id="symptoms"><span class="form-control-feedback"><i class="fa fa-lg fa-search text-muted"></i></span>
+		</div>
+		<div class="table-list-xs" data-toggle="buttons">
+			<dl class="btn">
+				<input type="checkbox">
+				<dt>
+				<label>Filter</label>
+				<span><strong>Eye Cancer Diagnostics</strong></span>
+				<label>rules</label>
+				<ul class="rules-list">
+					<li><span class="label">or</span>
+					<ul>
+						<li><span>CROM = 1</span>, <span>90000 > POS > 100000</span></li>
+						<li><span>CROM = 1</span>, <span>130000 > POS > 140000</span></li>
+					</ul>
+					</li>
+				</ul>
+				</dt>
+				<dd>
+				<strong>#789-90</strong>
+				</dd>
+			</dl>
+			<dl class="btn">
+				<input type="checkbox">
+				<dt>
+				<label>Filter</label>
+				<span><strong>Breast cancer</strong></span>
+				<label>rules</label>
+				<ul class="rules-list">
+					<li><span class="label">or</span>
+					<ul>
+						<li><span>CROM = 1</span>, <span>90000 > POS > 100000</span></li>
+						<li><span>CROM = 1</span>, <span>130000 > POS > 140000</span></li>
+					</ul>
+					</li>
+				</ul>
+				</dt>
+				<dd>
+				<strong>#789-90</strong>
+				</dd>
+			</dl>
+			<dl class="btn">
+				<input type="checkbox">
+				<dt>
+				<label>Filter</label>
+				<span><strong>Lung cancer</strong></span>
+				<label>rules</label>
+				<ul class="rules-list">
+					<li><span class="label">or</span>
+					<ul>
+						<li><span>CROM = 1</span>, <span>90000 > POS > 100000</span></li>
+						<li><span>CROM = 1</span>, <span>130000 > POS > 140000</span></li>
+					</ul>
+					</li>
+				</ul>
+				</dt>
+				<dd>
+				<strong>#789-90</strong>
+				</dd>
+			</dl>
+			<dl class="btn">
+				<input type="checkbox">
+				<dt>
+				<label>Filter</label>
+				<span><strong>Retinoblastoma</strong></span>
+				<label>rules</label>
+				<ul class="rules-list">
+					<li><span class="label">or</span>
+					<ul>
+						<li><span>CROM = 1</span>, <span>90000 > POS > 100000</span></li>
+						<li><span>CROM = 1</span>, <span>130000 > POS > 140000</span></li>
+					</ul>
+					</li>
+				</ul>
+				</dt>
+				<dd>
+				<strong>#789-90</strong>
+				</dd>
+			</dl>
+			<dl class="btn">
+				<input type="checkbox">
+				<dt>
+				<label>Filter</label>
+				<span><strong>Autism</strong></span>
+				<label>rules</label>
+				<ul class="rules-list">
+					<li><span class="label">or</span>
+					<ul>
+						<li><span>CROM = 1</span>, <span>90000 > POS > 100000</span></li>
+						<li><span>CROM = 1</span>, <span>130000 > POS > 140000</span></li>
+					</ul>
+					</li>
+				</ul>
+				</dt>
+				<dd>
+				<strong>#789-90</strong>
+				</dd>
+			</dl>
+			<dl class="btn">
+				<input type="checkbox">
+				<dt>
+				<label>Filter</label>
+				<span><strong>Mental retardation</strong></span>
+				<label>rules</label>
+				<ul class="rules-list">
+					<li><span class="label">or</span>
+					<ul>
+						<li><span>CROM = 1</span>, <span>90000 > POS > 100000</span></li>
+						<li><span>CROM = 1</span>, <span>130000 > POS > 140000</span></li>
+					</ul>
+					</li>
+				</ul>
+				</dt>
+				<dd>
+				<strong>#789-90</strong>
+				</dd>
+			</dl>
+		</div>
+	</div>
+	<div class="modal-footer">
+		<button class="btn btn-default" data-dismiss="modal" type="button">Cancel</button>
+		<button class="btn btn-primary" data-dismiss="modal" type="submit">Select</button>
+	</div>
+</div>
+</div>
+</div>
+<div class="modal fade" id="selectView" tabindex="-1" role="dialog" aria-labelledby="buylabel">
+<div role="document" class="modal-dialog">
+<div class="modal-content">
+	<div class="modal-header">
+		<button aria-label="Close" data-dismiss="modal" class="close" type="button"><span aria-hidden="true">×</span></button>
+		<h4 class="modal-title"><span>Select view</span></h4>
+	</div>
+	<div class="modal-body">
+		<div class="form-group has-feedback">
+			<input type="text" class="form-control"><span class="form-control-feedback"><i class="fa fa-lg fa-search text-muted"></i></span>
+		</div>
+		<div class="table-list-xs" data-toggle="buttons">
+			<dl class="btn">
+				<input type="radio" name="viewName">
+				<dt>
+				<label>View</label>
+				<span><strong>Default View</strong></span>
+				<label>Columns</label>
+				<span>
+				<span>CHROME(desc)</span>, <span>POS(asc)</span>, <span>ALT['somekeyword']</span>, <span>LOCATION</span>
+				</span>
+				</dt>
+				<dd>
+				<label>Standard</label>
+				</dd>
+			</dl>
+			<dl class="btn">
+				<input type="radio" name="viewName">
+				<dt>
+				<label>View</label>
+				<span><strong>Custom 1 User View</strong></span>
+				<label>Columns</label>
+				<span>
+				<span>CHROME(desc)</span>, <span>POS(asc)</span>, <span>ALT['somekeyword']</span>, <span>LOCATION</span>
+				</span>
+				</dt>
+				<dd>
+				<label>Standard</label>
+				</dd>
+			</dl>
+			<dl class="btn">
+				<input type="radio" name="viewName">
+				<dt>
+				<label>View</label>
+				<span><strong>Custom2 User View</strong></span>
+				<label>Columns</label>
+				<span>
+				<span>CHROME(desc)</span>, <span>POS(asc)</span>, <span>ALT['somekeyword']</span>, <span>LOCATION</span>
+				</span>
+				</dt>
+				<dd>
+				<label>Standard</label>
+				</dd>
+			</dl>
+		</div>
+	</div>
+</div>
+</div>
+</div>
+<div class="modal fade" id="selectGPanel" tabindex="-1" role="dialog" aria-labelledby="buylabel">
+<div role="document" class="modal-dialog">
+<div class="modal-content">
+	<div class="modal-header">
+		<button aria-label="Close" data-dismiss="modal" class="close" type="button"><span aria-hidden="true">×</span>
+		</button>
+		<h4 class="modal-title"><span>Select Genome Panel</span></h4>
+	</div>
+	<div class="modal-body">
+		<div class="form-group has-feedback">
+			<input type="text" class="form-control"><span class="form-control-feedback"><i class="fa fa-lg fa-search text-muted"></i></span>
+		</div>
+		<div class="table-list-xs" data-toggle="buttons">
+			<dl class="btn">
+				<input type="radio" name="panelName">
+				<dt>
+				<label>Genome Panel</label>
+				<span>TruSight One</span>
+				</dt>
+				<dd>
+				<label>System</label>
+				<span>GENOME ANALYZER IIX</span>
+				</dd>
+			</dl>
+			<dl class="btn">
+				<input type="radio" name="panelName">
+				<dt>
+				<label>Genome Panel</label>
+				<span>TruSight One</span>
+				</dt>
+				<dd>
+				<label>System</label>
+				<span>GENOME ANALYZER IIX</span>
+				</dd>
+			</dl>
+			<dl class="btn">
+				<input type="radio" name="panelName">
+				<dt>
+				<label>Genome Panel</label>
+				<span>TruSight One</span>
+				</dt>
+				<dd>
+				<label>System</label>
+				<span>GENOME ANALYZER IIX</span>
+				</dd>
+			</dl>
+			<dl class="btn">
+				<input type="radio" name="panelName">
+				<dt>
+				<label>Genome Panel</label>
+				<span>TruSight One</span>
+				</dt>
+				<dd>
+				<label>System</label>
+				<span>GENOME ANALYZER IIX</span>
+				</dd>
+			</dl>
+		</div>
+	</div>
+</div>
+</div>
+</div>
+<div class="modal modal-second-layer fade" id="fileOpen" tabindex="-1" role="dialog" aria-labelledby="buylabel">
+<div class="modal-backdrop">
+</div>
+<div class="modal-dialog" role="document">
+<div class="modal-content">
+	<div class="modal-header ui-draggable-handle">
+		<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+		<h4 class="modal-title"><span>Open File (System dialog)</span></h4>
+	</div>
+	<div class="modal-body">
+		<ul class="nav nav-tabs nav-stacked">
+			<li><a type="button" data-dismiss="modal" id="vcfFile">ONH_405_1946139_IonXpress_032.vcf.gz</a></li>
+			<li><a type="button" data-dismiss="modal" id="bamFile">ONH_405_1946139_IonXpress_032_bam.bam</a></li>
+			<li><a type="button" data-dismiss="modal" id="fasqFile">ONH_405_1946139_IonXpress_032_fasq.fasq</a></li>
+			<li><a type="button" data-dismiss="modal" id="fasqFile">ONH_405_1946139_genogramma.png</a></li>
+		</ul>
+	</div>
+	<div class="modal-footer">
+		<button data-dismiss="modal" class="btn btn-default" type="button"><span data-localize="actions.cancel">Cancel</span></button>
+		<button data-dismiss="modal" class="btn btn-primary" type="button"><span>Open</span></button>
+	</div>
+</div>
+</div>
+</div>
+<div class="modal modal-second-layer fade" id="fileOpen1" tabindex="-1" role="dialog" aria-labelledby="buylabel">
+<div class="modal-backdrop">
+</div>
+<div class="modal-dialog" role="document">
+<div class="modal-content">
+	<div class="modal-header ui-draggable-handle">
+		<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+		<h4 class="modal-title"><span>Select File (System dialog)</span></h4>
+	</div>
+	<div class="modal-body">
+		<ul class="nav nav-tabs nav-stacked">
+			<li><a type="button" data-dismiss="modal">ONH_405_1946139_genogramma.png</a></li>
+		</ul>
+	</div>
+	<div class="modal-footer">
+		<button data-dismiss="modal" class="btn btn-default" type="button"><span data-localize="actions.cancel">Cancel</span></button>
+		<button data-dismiss="modal" class="btn btn-primary" type="button"><span>Select</span></button>
+	</div>
+</div>
+</div>
+</div>
+<div class="modal modal-second-layer fade" id="fileOpen2" tabindex="-1" role="dialog" aria-labelledby="buylabel">
+<div class="modal-backdrop">
+</div>
+<div class="modal-dialog" role="document">
+<div class="modal-content">
+	<div class="modal-header ui-draggable-handle">
+		<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+		<h4 class="modal-title"><span>Select File (System dialog)</span></h4>
+	</div>
+	<div class="modal-body">
+		<ul class="nav nav-tabs nav-stacked">
+			<li><a type="button" data-dismiss="modal">1.jpg</a></li>
+			<li><a type="button" data-dismiss="modal">2.jpg</a></li>
+			<li><a type="button" data-dismiss="modal">3.jpg</a></li>
+			<li><a type="button" data-dismiss="modal">4.jpg</a></li>
+			<li><a type="button" data-dismiss="modal">5.png</a></li>
+		</ul>
+	</div>
+	<div class="modal-footer">
+		<button data-dismiss="modal" class="btn btn-default" type="button"><span data-localize="actions.cancel">Cancel</span></button>
+		<button data-dismiss="modal" class="btn btn-primary" type="button"><span>Select</span></button>
+	</div>
+</div>
+</div>
+</div>
+<div aria-labelledby="curretViewLabel" role="dialog" tabindex="-1" id="currentView" class="modal fade modal-third-layer">
+<div class="modal-backdrop fade in">
+</div>
+<div class="modal-dialog modal-dialog-primary modal-sm" role="document">
+<div class="modal-content">
+<div class="modal-header modal-header-with-tabs ">
+		<button style="color: rgb(255, 255, 255); float: right; margin: 4px 8px;" type="button" class="btn btn-link" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">Ready</span></button><h4 style="padding-left:48px;color:#fff" class="modal-title"><label class="checkbox" style="position: absolute; left: 16px; top: 10px;"><input type="checkbox"><i style="background: rgba(255, 255, 255, 0.2) none repeat scroll 0% 0%; border: 1px solid rgba(255, 255, 255, 0.4);"></i></label> Selected columns: 2</h4>
+		
+	</div>
+	<div class="modal-body clearfix padding0">
+			<div class="dropdown">
+									<div class="navbar-search"><div class="navbar-search-field"><input type="text" value="Al" class="form-control material-input"></div></div>
+									<ul class="nav nav nav-tabs nav-stacked nav-componets nav-controls nav-radios">
+  									<li>
+                     <a href="#" type="button"><label class="checkbox"><input type="checkbox"><i></i></label><span class="link-label"><span class="">Al</span>lele Frequency</span><span class="link-desc">Text of description for <span class="">al</span>lele field </span></a>
+                    </li>
+  									<li>
+  									  <a href="#" type="button"><label class="checkbox"><input type="checkbox"><i></i></label><span class="link-label">Adjusted P-v<span class="">al</span>ue</span><span class="link-desc">Text of description for field </span></a>
+  									</li>
+  									<li>
+  									  <a href="#" type="button"><label  class="checkbox"><input type="checkbox"><i></i></label><span class="link-label">Variant Qu<span class="">al</span>ity</span><span class="link-desc">Text of description for field </span>
+    									  
+  									  </a>
+  									</li>
+									</ul>
+									</div>
+	</div>
+
+</div>
+</div>
+</div>
+<div aria-labelledby="loginModalLabel" role="dialog" id="loginModal" class="modal fade">
+<div role="document" class="modal-dialog ui-draggable">
+<div class="modal-content">
+	<div style="padding:0" class="modal-header modal-header-with-nav ui-draggable-handle">
+		<div class="navbar navbar-inverse table-row">
+			<div class="max-width">
+				<h4 class="modal-title">Account</h4>
+			</div>
+			<div>
+				<button style="padding: 11px 15px;" aria-label="Close" data-dismiss="modal" class="btn btn-primary" type="button"><span aria-hidden="true"><i class="fa fa-times"></i></span></button>
+			</div>
+		</div>
+	</div>
+	<div class="modal-body">
+		<div class="panel-group card-list">
+			<div class="panel panel-default">
+				<div class="panel-body">
+					<dl class="editable">
+						<dt>Email</dt>
+						<dd>username@domail.com</dd>
+						<dd><input value="username@domail.com" class="form-control"></dd>
+					</dl>
+					<dl class="editable">
+						<dt>
+						<span>Name</span>: </dt>
+						<dd>Somename </dd>
+						<dd><input value="Somename" class="form-control"></dd>
+					</dl>
+					<dl class="editable">
+						<dt>Institution</dt>
+						<dd>Clinic LTD</dd>
+						<dd>
+						<input value="Clinic LTD" class="form-control">
+						</dd>
+					</dl>
+					<dl class="editable">
+						<dt>Specialization</dt>
+						<dd>
+						<span>Doctor</span>
+						</dd>
+						<dd>
+						<select aria-hidden="true" tabindex="-1" class="select2">
+							<option class="selected">Doctor</option>
+							<option>Laborant</option>
+						</select>
+						</dd>
+					</dl>
+					<dl class="editable">
+						<dt>
+						<span data-localize="language.title">Language</span>: </dt>
+						<dd>
+						English </dd>
+						<dd>
+						<select class="select2">
+							<option>English</option>
+							<option>中国</option>
+						</select>
+						</dd>
+					</dl>
+					<dl>
+						<dt>
+						<span data-localize="account.profile.balance.label">Balance</span>: </dt>
+						<!--if paid sample analises, not a zero balance -->
+						<dd>
+						<span class="text-success">789 <span data-localize="account.profile.balance.value">paid analysis left</span></span>
+						<!--  If zero balance  -->
+						<span class="text-warning hidden">0 <span data-localize="account.profile.balance.value">paid analysis left</span></span>
+						</dd>
+					</dl>
+					<!--  If no paid options, to use remove class hidden  -->
+					<p class="hidden">
+						<a data-localize="buy.buy" data-target="#buy" data-toggle="modal" data-keyboard="false" type="button" href="" class="btn btn-warning btn-block btn-wrapnormal">Buy access to advanced features of App Genomix</a>
+					</p>
+					<!--if paid sample analises, zero balance, to use remove classes hidden  -->
+					<p class="hidden">
+						<a data-localize="buy.buy_continue" data-target="#buy" data-toggle="modal" data-keyboard="false" type="button" href="" class="btn btn-warning btn-block btn-wrapnormal">Buy access to continue to use the advanced features of App Genomix</a>
+					</p>
+				</div>
+				<div class="panel-footer">
+					<button title="More options" class="btn btn-uppercase btn-link btn-edit active" data-toggle="button">Edit</button>
+					<div class="btn-group">
+						<button class="btn btn-uppercase btn-link" data-toggle="button">CANCEL</button><button class="btn btn-uppercase btn-link" data-toggle="button">SAVE</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+</div>
+</div>
+<div class="alert alert-inverse alert-fixed hidden">
+<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+<span aria-hidden="true">&times;</span>
+</button>
+<!--   success state -->
+<p data-localize="samples.upload.alerts.success.title">
+ Filename.vcf is upload successfully
+</p>
+<p data-localize="samples.upload.alerts.success.description">
+ You can choose sample SampleName for analises now
+</p>
+<p>
+<button class="btn btn-sm btn-block btn-success"><span data-localize="samples.upload.alerts.success.action">Choose this sample for analises</span></button>
+</p>
+<!--   warning state -->
+<p data-localize="samples.upload.alerts.warning.title">
+ Filename.vcf is upload successfully
+</p>
+<p data-localize="samples.upload.alerts.warning.title">
+ You can choose sample SampleName for analises now <span class="text-warning" data-localize="samples.upload.alerts.warning.accent">but sample metadata is not complite
+</p>
+<p>
+<button class="btn btn-sm btn-block btn-warning" data-localize="samples.upload.alerts.warning.action">Fill sample metadata</button>
+</p>
+<!--   danger state -->
+<p data-localize="samples.upload.alerts.error.title">
+ Filename.vcf is not upload
+</p>
+<p data-localize="samples.upload.alerts.error.description">
+<span class="text-danger hidden">File is damage or file format not supported
+</p>
+</div>
+<script src="assets/js/jquery.min.js"></script>
+
+<script src="assets/js/bootstrap.min.js"></script>
+<script src="assets/js/matchMedia.js"></script>
+<script src="assets/js/matchMedia.addListener.js"></script>
+<script src="assets/js/select2.full.js"></script>
+<script src="assets/js/bootstrap3-editable/js/bootstrap-editable.js"></script>
+<script src="assets/js/jquery.treegrid/jquery.treegrid.js"></script>
+<script src="assets/js/jquery.treegrid/jquery.treegrid.bootstrap3.js"></script>
+<script src="assets/js/jquery.localize.min.js"></script>
+<script src="assets/js/app/app.js"></script>
+<script src="assets/js/app/jquerylocalize.js"></script>
 </body>
 </html>
